@@ -1,0 +1,71 @@
+@define-mixin color $screen {
+  /** main colors */
+  .color\:primary$(screen) { color: var(--color-primary); }
+  .color\:primary-light$(screen) { color: var(--color-primary-light); }
+  .color\:primary-dark$(screen) { color: var(--color-primary-dark); }
+  .color\:secondary$(screen) { color: var(--color-secondary); }
+  .color\:secondary-light$(screen) { color: var(--color-secondary-light); }
+  .color\:secondary-dark$(screen) { color: var(--color-secondary-dark); }
+  .color\:tertiary$(screen) { color: var(--color-tertiary); }
+  .color\:tertiary-light$(screen) { color: var(--color-tertiary-light); }
+  .color\:tertiary-dark$(screen) { color: var(--color-tertiary-dark); }
+  .color\:quaternary$(screen) { color: var(--color-quaternary); }
+  .color\:quaternary-light$(screen) { color: var(--color-quaternary-light); }
+  .color\:quaternary-dark$(screen) { color: var(--color-quaternary-dark); }
+  .bg-color\:primary$(screen) { background-color: var(--color-primary); }
+  .bg-color\:primary-light$(screen) { background-color: var(--color-primary-light); }
+  .bg-color\:primary-dark$(screen) { background-color: var(--color-primary-dark); }
+  .bg-color\:secondary$(screen) { background-color: var(--color-secondary); }
+  .bg-color\:secondary-light$(screen) { background-color: var(--color-secondary-light); }
+  .bg-color\:secondary-dark$(screen) { background-color: var(--color-secondary-dark); }
+  .bg-color\:tertiary$(screen) { background-color: var(--color-tertiary); }
+  .bg-color\:tertiary-light$(screen) { background-color: var(--color-tertiary-light); }
+  .bg-color\:tertiary-dark$(screen) { background-color: var(--color-tertiary-dark); }
+  .bg-color\:quaternary$(screen) { background-color: var(--color-quaternary); }
+  .bg-color\:quaternary-light$(screen) { background-color: var(--color-quaternary-light); }
+  .bg-color\:quaternary-dark$(screen) { background-color: var(--color-quaternary-dark); }
+
+  /** neutral colors */
+  .color\:900$(screen) { color: var(--color-900); }
+  .color\:800$(screen) { color: var(--color-800); }
+  .color\:700$(screen) { color: var(--color-700); }
+  .color\:600$(screen) { color: var(--color-600); }
+  .color\:500$(screen) { color: var(--color-500); }
+  .color\:400$(screen) { color: var(--color-400); }
+  .color\:300$(screen) { color: var(--color-300); }
+  .color\:200$(screen) { color: var(--color-200); }
+  .color\:100$(screen) { color: var(--color-100); }
+  .color\:000$(screen) { color: var(--color-000); }
+  .bg-color\:900$(screen) { background-color: var(--color-900); }
+  .bg-color\:800$(screen) { background-color: var(--color-800); }
+  .bg-color\:700$(screen) { background-color: var(--color-700); }
+  .bg-color\:600$(screen) { background-color: var(--color-600); }
+  .bg-color\:500$(screen) { background-color: var(--color-500); }
+  .bg-color\:400$(screen) { background-color: var(--color-400); }
+  .bg-color\:300$(screen) { background-color: var(--color-300); }
+  .bg-color\:200$(screen) { background-color: var(--color-200); }
+  .bg-color\:100$(screen) { background-color: var(--color-100); }
+  .bg-color\:000$(screen) { background-color: var(--color-000); }
+
+  /** other colors */
+  .color\:red$(screen) { color: var(--color-red); }
+  .color\:red-light$(screen) { color: var(--color-red); }
+  .color\:red-dark$(screen) { color: var(--color-red-dark); }
+  .color\:green$(screen) { color: var(--color-green); }
+  .color\:green-light$(screen) { color: var(--color-green-light); }
+  .color\:green-dark$(screen) { color: var(--color-green-dark); }
+  .color\:blue$(screen) { color: var(--color-blue); }
+  .color\:blue-light$(screen) { color: var(--color-blue-light); }
+  .color\:blue-dark$(screen) { color: var(--color-blue-dark); }
+  .bg-color\:red$(screen) { background-color: var(--color-red); }
+  .bg-color\:red-light$(screen) { background-color: var(--color-red); }
+  .bg-color\:red-dark$(screen) { background-color: var(--color-red-dark); }
+  .bg-color\:green$(screen) { background-color: var(--color-green); }
+  .bg-color\:green-light$(screen) { background-color: var(--color-green-light); }
+  .bg-color\:green-dark$(screen) { background-color: var(--color-green-dark); }
+  .bg-color\:blue$(screen) { background-color: var(--color-blue); }
+  .bg-color\:blue-light$(screen) { background-color: var(--color-blue-light); }
+  .bg-color\:blue-dark$(screen) { background-color: var(--color-blue-dark); }
+}
+
+@mixin color;

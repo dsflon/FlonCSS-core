@@ -1,0 +1,273 @@
+@define-mixin gutter $screen {
+  /* margin */
+  .mt$(screen) { margin-top: var(--gutter-base); }
+  .mt\:2xl$(screen) { margin-top: var(--gutter-2xl); }
+  .mt\:xl$(screen) { margin-top: var(--gutter-xl); }
+  .mt\:lg$(screen) { margin-top: var(--gutter-lg); }
+  .mt\:md$(screen) { margin-top: var(--gutter-md); }
+  .mt\:sm$(screen) { margin-top: var(--gutter-sm); }
+  .mt\:xs$(screen) { margin-top: var(--gutter-xs); }
+  .mt\:2xs$(screen) { margin-top: var(--gutter-2xs); }
+  .mt\:none$(screen) { margin-top: 0; }
+  .mt\:auto$(screen) { margin-top: auto; }
+
+  .mr$(screen) { margin-right: var(--gutter-base); }
+  .mr\:2xl$(screen) { margin-right: var(--gutter-2xl); }
+  .mr\:xl$(screen) { margin-right: var(--gutter-xl); }
+  .mr\:lg$(screen) { margin-right: var(--gutter-lg); }
+  .mr\:md$(screen) { margin-right: var(--gutter-md); }
+  .mr\:sm$(screen) { margin-right: var(--gutter-sm); }
+  .mr\:xs$(screen) { margin-right: var(--gutter-xs); }
+  .mr\:2xs$(screen) { margin-right: var(--gutter-2xs); }
+  .mr\:none$(screen) { margin-right: 0; }
+  .mr\:auto$(screen) { margin-right: auto; }
+
+  .mb$(screen) { margin-bottom: var(--gutter-base); }
+  .mb\:2xl$(screen) { margin-bottom: var(--gutter-2xl); }
+  .mb\:xl$(screen) { margin-bottom: var(--gutter-xl); }
+  .mb\:lg$(screen) { margin-bottom: var(--gutter-lg); }
+  .mb\:md$(screen) { margin-bottom: var(--gutter-md); }
+  .mb\:sm$(screen) { margin-bottom: var(--gutter-sm); }
+  .mb\:xs$(screen) { margin-bottom: var(--gutter-xs); }
+  .mb\:2xs$(screen) { margin-bottom: var(--gutter-2xs); }
+  .mb\:none$(screen) { margin-bottom: 0; }
+  .mb\:auto$(screen) { margin-bottom: auto; }
+
+  .ml$(screen) { margin-left: var(--gutter-base); }
+  .ml\:2xl$(screen) { margin-left: var(--gutter-2xl); }
+  .ml\:xl$(screen) { margin-left: var(--gutter-xl); }
+  .ml\:lg$(screen) { margin-left: var(--gutter-lg); }
+  .ml\:md$(screen) { margin-left: var(--gutter-md); }
+  .ml\:sm$(screen) { margin-left: var(--gutter-sm); }
+  .ml\:xs$(screen) { margin-left: var(--gutter-xs); }
+  .ml\:2xs$(screen) { margin-left: var(--gutter-2xs); }
+  .ml\:none$(screen) { margin-left: 0; }
+  .ml\:auto$(screen) { margin-left: auto; }
+
+  .mx$(screen) {
+    margin-right: var(--gutter-base);
+    margin-left: var(--gutter-base);
+  }
+  .mx\:2xl$(screen) {
+    margin-right: var(--gutter-2xl);
+    margin-left: var(--gutter-2xl);
+  }
+  .mx\:xl$(screen) {
+    margin-right: var(--gutter-xl);
+    margin-left: var(--gutter-xl);
+  }
+  .mx\:lg$(screen) {
+    margin-right: var(--gutter-lg);
+    margin-left: var(--gutter-lg);
+  }
+  .mx\:md$(screen) {
+    margin-right: var(--gutter-md);
+    margin-left: var(--gutter-md);
+  }
+  .mx\:sm$(screen) {
+    margin-right: var(--gutter-sm);
+    margin-left: var(--gutter-sm);
+  }
+  .mx\:xs$(screen) {
+    margin-right: var(--gutter-xs);
+    margin-left: var(--gutter-xs);
+  }
+  .mx\:2xs$(screen) {
+    margin-right: var(--gutter-2xs);
+    margin-left: var(--gutter-2xs);
+  }
+  .mx\:none$(screen) {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .mx\:auto$(screen) {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .my$(screen) {
+    margin-top: var(--gutter-base);
+    margin-bottom: var(--gutter-base);
+  }
+  .my\:2xl$(screen) {
+    margin-top: var(--gutter-2xl);
+    margin-bottom: var(--gutter-2xl);
+  }
+  .my\:xl$(screen) {
+    margin-top: var(--gutter-xl);
+    margin-bottom: var(--gutter-xl);
+  }
+  .my\:lg$(screen) {
+    margin-top: var(--gutter-lg);
+    margin-bottom: var(--gutter-lg);
+  }
+  .my\:md$(screen) {
+    margin-top: var(--gutter-md);
+    margin-bottom: var(--gutter-md);
+  }
+  .my\:sm$(screen) {
+    margin-top: var(--gutter-sm);
+    margin-bottom: var(--gutter-sm);
+  }
+  .my\:xs$(screen) {
+    margin-top: var(--gutter-xs);
+    margin-bottom: var(--gutter-xs);
+  }
+  .my\:2xs$(screen) {
+    margin-top: var(--gutter-2xs);
+    margin-bottom: var(--gutter-2xs);
+  }
+  .my\:none$(screen) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .my\:auto$(screen) {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .mg$(screen) { margin: var(--gutter-base); }
+  .mg\:2xl$(screen) { margin: var(--gutter-2xl); }
+  .mg\:xl$(screen) { margin: var(--gutter-xl); }
+  .mg\:lg$(screen) { margin: var(--gutter-lg); }
+  .mg\:md$(screen) { margin: var(--gutter-md); }
+  .mg\:sm$(screen) { margin: var(--gutter-sm); }
+  .mg\:xs$(screen) { margin: var(--gutter-xs); }
+  .mg\:2xs$(screen) { margin: var(--gutter-2xs); }
+  .mg\:none$(screen) { margin: 0; }
+
+  /* padding */
+  .pt$(screen) { padding-top: var(--gutter-base); }
+  .pt\:2xl$(screen) { padding-top: var(--gutter-2xl); }
+  .pt\:xl$(screen) { padding-top: var(--gutter-xl); }
+  .pt\:lg$(screen) { padding-top: var(--gutter-lg); }
+  .pt\:md$(screen) { padding-top: var(--gutter-md); }
+  .pt\:sm$(screen) { padding-top: var(--gutter-sm); }
+  .pt\:xs$(screen) { padding-top: var(--gutter-xs); }
+  .pt\:2xs$(screen) { padding-top: var(--gutter-2xs); }
+  .pt\:none$(screen) { padding-top: 0; }
+
+  .pr$(screen) { padding-right: var(--gutter-base); }
+  .pr\:2xl$(screen) { padding-right: var(--gutter-2xl); }
+  .pr\:xl$(screen) { padding-right: var(--gutter-xl); }
+  .pr\:lg$(screen) { padding-right: var(--gutter-lg); }
+  .pr\:md$(screen) { padding-right: var(--gutter-md); }
+  .pr\:sm$(screen) { padding-right: var(--gutter-sm); }
+  .pr\:xs$(screen) { padding-right: var(--gutter-xs); }
+  .pr\:2xs$(screen) { padding-right: var(--gutter-2xs); }
+  .pr\:none$(screen) { padding-right: 0; }
+
+  .pb$(screen) { padding-bottom: var(--gutter-base); }
+  .pb\:2xl$(screen) { padding-bottom: var(--gutter-2xl); }
+  .pb\:xl$(screen) { padding-bottom: var(--gutter-xl); }
+  .pb\:lg$(screen) { padding-bottom: var(--gutter-lg); }
+  .pb\:md$(screen) { padding-bottom: var(--gutter-md); }
+  .pb\:sm$(screen) { padding-bottom: var(--gutter-sm); }
+  .pb\:xs$(screen) { padding-bottom: var(--gutter-xs); }
+  .pb\:2xs$(screen) { padding-bottom: var(--gutter-2xs); }
+  .pb\:none$(screen) { padding-bottom: 0; }
+
+  .pl$(screen) { padding-left: var(--gutter-base); }
+  .pl\:2xl$(screen) { padding-left: var(--gutter-2xl); }
+  .pl\:xl$(screen) { padding-left: var(--gutter-xl); }
+  .pl\:lg$(screen) { padding-left: var(--gutter-lg); }
+  .pl\:md$(screen) { padding-left: var(--gutter-md); }
+  .pl\:sm$(screen) { padding-left: var(--gutter-sm); }
+  .pl\:xs$(screen) { padding-left: var(--gutter-xs); }
+  .pl\:2xs$(screen) { padding-left: var(--gutter-2xs); }
+  .pl\:none$(screen) { padding-left: 0; }
+
+  .px$(screen) {
+    padding-right: var(--gutter-base);
+    padding-left: var(--gutter-base);
+  }
+  .px\:2xl$(screen) {
+    padding-right: var(--gutter-2xl);
+    padding-left: var(--gutter-2xl);
+  }
+  .px\:xl$(screen) {
+    padding-right: var(--gutter-xl);
+    padding-left: var(--gutter-xl);
+  }
+  .px\:lg$(screen) {
+    padding-right: var(--gutter-lg);
+    padding-left: var(--gutter-lg);
+  }
+  .px\:md$(screen) {
+    padding-right: var(--gutter-md);
+    padding-left: var(--gutter-md);
+  }
+  .px\:sm$(screen) {
+    padding-right: var(--gutter-sm);
+    padding-left: var(--gutter-sm);
+  }
+  .px\:xs$(screen) {
+    padding-right: var(--gutter-xs);
+    padding-left: var(--gutter-xs);
+  }
+  .px\:2xs$(screen) {
+    padding-right: var(--gutter-2xs);
+    padding-left: var(--gutter-2xs);
+  }
+  .px\:none$(screen) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .px\:auto$(screen) {
+    padding-right: auto;
+    padding-left: auto;
+  }
+
+  .py$(screen) {
+    padding-top: var(--gutter-base);
+    padding-bottom: var(--gutter-base);
+  }
+  .py\:2xl$(screen) {
+    padding-top: var(--gutter-2xl);
+    padding-bottom: var(--gutter-2xl);
+  }
+  .py\:xl$(screen) {
+    padding-top: var(--gutter-xl);
+    padding-bottom: var(--gutter-xl);
+  }
+  .py\:lg$(screen) {
+    padding-top: var(--gutter-lg);
+    padding-bottom: var(--gutter-lg);
+  }
+  .py\:md$(screen) {
+    padding-top: var(--gutter-md);
+    padding-bottom: var(--gutter-md);
+  }
+  .py\:sm$(screen) {
+    padding-top: var(--gutter-sm);
+    padding-bottom: var(--gutter-sm);
+  }
+  .py\:xs$(screen) {
+    padding-top: var(--gutter-xs);
+    padding-bottom: var(--gutter-xs);
+  }
+  .py\:2xs$(screen) {
+    padding-top: var(--gutter-2xs);
+    padding-bottom: var(--gutter-2xs);
+  }
+  .py\:none$(screen) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .py\:auto$(screen) {
+    padding-top: auto;
+    padding-bottom: auto;
+  }
+
+  .pd$(screen) { padding: var(--gutter-base); }
+  .pd\:2xl$(screen) { padding: var(--gutter-2xl); }
+  .pd\:xl$(screen) { padding: var(--gutter-xl); }
+  .pd\:lg$(screen) { padding: var(--gutter-lg); }
+  .pd\:md$(screen) { padding: var(--gutter-md); }
+  .pd\:sm$(screen) { padding: var(--gutter-sm); }
+  .pd\:xs$(screen) { padding: var(--gutter-xs); }
+  .pd\:2xs$(screen) { padding: var(--gutter-2xs); }
+  .pd\:none$(screen) { padding: 0; }
+}
+
+@mixin gutter;

@@ -1,0 +1,90 @@
+.grid {
+  /* stylelint-disable-next-line length-zero-no-unit */
+  --column-gap: 0px;
+  --grid-1: repeat(1, minmax(0, 1fr));
+  --grid-2: repeat(2, minmax(0, 1fr));
+  --grid-3: repeat(3, minmax(0, 1fr));
+  --grid-4: repeat(4, minmax(0, 1fr));
+  --grid-5: repeat(5, minmax(0, 1fr));
+  --grid-6: repeat(6, minmax(0, 1fr));
+  --grid-7: repeat(7, minmax(0, 1fr));
+  --grid-8: repeat(8, minmax(0, 1fr));
+  --grid-9: repeat(9, minmax(0, 1fr));
+  --grid-10: repeat(10, minmax(0, 1fr));
+  --grid-11: repeat(11, minmax(0, 1fr));
+  --grid-12: repeat(12, minmax(0, 1fr));
+
+  display: grid;
+  column-gap: var(--column-gap);
+  row-gap: var(--row-gap, var(--column-gap));
+}
+
+@define-mixin grid $screen {
+  .grid-flow\:row$(screen) { grid-auto-flow: row; }
+  .grid-flow\:col$(screen) { grid-auto-flow: column; }
+  .grid-flow\:dense$(screen) { grid-auto-flow: dense; }
+  .grid-flow\:row-dense$(screen) { grid-auto-flow: row dense; }
+  .grid-flow\:col-dense$(screen) { grid-auto-flow: column dense; }
+
+  /** columns */
+  .grid-cols\:1$(screen) { grid-template-columns: var(--grid-1); }
+  .grid-cols\:2$(screen) { grid-template-columns: var(--grid-2); }
+  .grid-cols\:3$(screen) { grid-template-columns: var(--grid-3); }
+  .grid-cols\:4$(screen) { grid-template-columns: var(--grid-4); }
+  .grid-cols\:5$(screen) { grid-template-columns: var(--grid-5); }
+  .grid-cols\:6$(screen) { grid-template-columns: var(--grid-6); }
+  .grid-cols\:7$(screen) { grid-template-columns: var(--grid-7); }
+  .grid-cols\:8$(screen) { grid-template-columns: var(--grid-8); }
+  .grid-cols\:9$(screen) { grid-template-columns: var(--grid-9); }
+  .grid-cols\:10$(screen) { grid-template-columns: var(--grid-10); }
+  .grid-cols\:11$(screen) { grid-template-columns: var(--grid-11); }
+  .grid-cols\:12$(screen) { grid-template-columns: var(--grid-12); }
+  .grid-cols\:none$(screen) { grid-template-columns: none; }
+  .grid-cols\:subgrid$(screen) { grid-template-columns: subgrid; }
+
+  /** col span */
+  .col-span\:auto$(screen) { grid-column: auto; }
+  .col-span\:1$(screen) { grid-column: span 1 / span 1; }
+  .col-span\:2$(screen) { grid-column: span 2 / span 2; }
+  .col-span\:3$(screen) { grid-column: span 3 / span 3; }
+  .col-span\:4$(screen) { grid-column: span 4 / span 4; }
+  .col-span\:5$(screen) { grid-column: span 5 / span 5; }
+  .col-span\:6$(screen) { grid-column: span 6 / span 6; }
+  .col-span\:7$(screen) { grid-column: span 7 / span 7; }
+  .col-span\:8$(screen) { grid-column: span 8 / span 8; }
+  .col-span\:9$(screen) { grid-column: span 9 / span 9; }
+  .col-span\:10$(screen) { grid-column: span 10 / span 10; }
+  .col-span\:11$(screen) { grid-column: span 11 / span 11; }
+
+  /** rows */
+  .grid-rows\:1$(screen) { grid-template-rows: var(--grid-1); }
+  .grid-rows\:2$(screen) { grid-template-rows: var(--grid-2); }
+  .grid-rows\:3$(screen) { grid-template-rows: var(--grid-3); }
+  .grid-rows\:4$(screen) { grid-template-rows: var(--grid-4); }
+  .grid-rows\:5$(screen) { grid-template-rows: var(--grid-5); }
+  .grid-rows\:6$(screen) { grid-template-rows: var(--grid-6); }
+  .grid-rows\:7$(screen) { grid-template-rows: var(--grid-7); }
+  .grid-rows\:8$(screen) { grid-template-rows: var(--grid-8); }
+  .grid-rows\:9$(screen) { grid-template-rows: var(--grid-9); }
+  .grid-rows\:10$(screen) { grid-template-rows: var(--grid-10); }
+  .grid-rows\:11$(screen) { grid-template-rows: var(--grid-11); }
+  .grid-rows\:12$(screen) { grid-template-rows: var(--grid-12); }
+  .grid-rows\:none$(screen) { grid-template-rows: none; }
+  .grid-rows\:subgrid$(screen) { grid-template-rows: subgrid; }
+
+  /** rows span */
+  .row-span\:auto$(screen) { grid-row: auto; }
+  .row-span\:1$(screen) { grid-row: span 1 / span 1; }
+  .row-span\:2$(screen) { grid-row: span 2 / span 2; }
+  .row-span\:3$(screen) { grid-row: span 3 / span 3; }
+  .row-span\:4$(screen) { grid-row: span 4 / span 4; }
+  .row-span\:5$(screen) { grid-row: span 5 / span 5; }
+  .row-span\:6$(screen) { grid-row: span 6 / span 6; }
+  .row-span\:7$(screen) { grid-row: span 7 / span 7; }
+  .row-span\:8$(screen) { grid-row: span 8 / span 8; }
+  .row-span\:9$(screen) { grid-row: span 9 / span 9; }
+  .row-span\:10$(screen) { grid-row: span 10 / span 10; }
+  .row-span\:11$(screen) { grid-row: span 11 / span 11; }
+}
+
+@mixin grid;

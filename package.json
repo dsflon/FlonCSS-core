@@ -1,0 +1,13 @@
+{
+  "name": "floncss",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {},
+  "devDependencies": {
+    "postcss": "^8.5.3",
+    "postcss-import": "^16.1.0",
+    "postcss-import-resolver": "^2.0.0",
+    "postcss-mixins": "^11.0.3",
+    "postcss-preset-env": "^10.1.5"
+  }
+}

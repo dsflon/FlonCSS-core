@@ -1,0 +1,3 @@
+@media (--media-sm) {
+  @mixin gutter \@sm;
+}

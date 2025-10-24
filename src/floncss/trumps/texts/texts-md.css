@@ -1,0 +1,3 @@
+@media (--media-md) {
+  @mixin text \@md;
+}

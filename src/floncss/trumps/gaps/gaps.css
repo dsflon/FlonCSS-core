@@ -1,0 +1,25 @@
+@define-mixin gap $screen {
+  .gap$(screen) { --column-gap: var(--gap-base); }
+  .gap\:2xl$(screen) { --column-gap: var(--gap-2xl); }
+  .gap\:xl$(screen) { --column-gap: var(--gap-xl); }
+  .gap\:lg$(screen) { --column-gap: var(--gap-lg); }
+  .gap\:md$(screen) { --column-gap: var(--gap-md); }
+  .gap\:sm$(screen) { --column-gap: var(--gap-sm); }
+  .gap\:xs$(screen) { --column-gap: var(--gap-xs); }
+  .gap\:2xs$(screen) { --column-gap: var(--gap-2xs); }
+  .gap\:3xs$(screen) { --column-gap: var(--gap-3xs); }
+  .gap\:none$(screen) { --column-gap: 0; }
+
+  .row-gap$(screen) { --row-gap: var(--gap-base); }
+  .row-gap\:2xl$(screen) { --row-gap: var(--gap-2xl); }
+  .row-gap\:xl$(screen) { --row-gap: var(--gap-xl); }
+  .row-gap\:lg$(screen) { --row-gap: var(--gap-lg); }
+  .row-gap\:md$(screen) { --row-gap: var(--gap-md); }
+  .row-gap\:sm$(screen) { --row-gap: var(--gap-sm); }
+  .row-gap\:xs$(screen) { --row-gap: var(--gap-xs); }
+  .row-gap\:2xs$(screen) { --row-gap: var(--gap-2xs); }
+  .row-gap\:3xs$(screen) { --row-gap: var(--gap-3xs); }
+  .row-gap\:none$(screen) { --row-gap: 0; }
+}
+
+@mixin gap;

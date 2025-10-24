@@ -1,0 +1,3 @@
+@media (--media-lg) {
+  @mixin display \@lg;
+}

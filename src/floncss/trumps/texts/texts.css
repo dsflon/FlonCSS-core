@@ -1,0 +1,54 @@
+@define-mixin text $screen {
+  /* vertical-align */
+  .align\:inherit$(screen) { vertical-align: inherit; }
+  .align\:baseline$(screen) { vertical-align: baseline; }
+  .align\:sub$(screen) { vertical-align: sub; }
+  .align\:super$(screen) { vertical-align: super; }
+  .align\:text-top$(screen) { vertical-align: text-top; }
+  .align\:text-bottom$(screen) { vertical-align: text-bottom; }
+  .align\:top$(screen) { vertical-align: top; }
+  .align\:middle$(screen) { vertical-align: middle; }
+  .align\:bottom$(screen) { vertical-align: bottom; }
+
+  /* text-align */
+  .text\:left$(screen) { text-align: left; }
+  .text\:center$(screen) { text-align: center; }
+  .text\:right$(screen) { text-align: right; }
+  .text\:justify$(screen) { text-align: justify; }
+
+  /* line-height */
+  .line-height\:none$(screen) { line-height: 1; }
+  .line-height$(screen) { line-height: var(--line-height-base); }
+  .line-height\:xl$(screen) { line-height: var(--line-height-xl); }
+  .line-height\:lg$(screen) { line-height: var(--line-height-lg); }
+  .line-height\:md$(screen) { line-height: var(--line-height-md); }
+  .line-height\:sm$(screen) { line-height: var(--line-height-sm); }
+
+  /* [old] line-height */
+  .lh\:none$(screen) { line-height: 1; }
+  .lh$(screen) { line-height: var(--line-height-base); }
+  .lh\:2xl$(screen) { line-height: var(--line-height-2xl); }
+  .lh\:xl$(screen) { line-height: var(--line-height-xl); }
+  .lh\:lg$(screen) { line-height: var(--line-height-lg); }
+  .lh\:md$(screen) { line-height: var(--line-height-md); }
+  .lh\:sm$(screen) { line-height: var(--line-height-sm); }
+  .lh\:xs$(screen) { line-height: var(--line-height-xs); }
+  .lh\:2xs$(screen) { line-height: var(--line-height-2xs); }
+
+  /* white-space */
+  .white-space\:normal$(screen) { white-space: normal; }
+  .white-space\:nowrap$(screen) { white-space: nowrap; }
+  .white-space\:pre$(screen) { white-space: pre; }
+  .white-space\:pre-line$(screen) { white-space: pre-line; }
+  .white-space\:break-spaces$(screen) { white-space: break-spaces; }
+
+  /* letter-spacing */
+  .letter-spacing\:none$(screen) { letter-spacing: 0; }
+  .letter-spacing$(screen) { letter-spacing: var(--letter-spacing-base); }
+  .letter-spacing\:xl$(screen) { letter-spacing: var(--letter-spacing-xl); }
+  .letter-spacing\:lg$(screen) { letter-spacing: var(--letter-spacing-lg); }
+  .letter-spacing\:md$(screen) { letter-spacing: var(--letter-spacing-md); }
+  .letter-spacing\:sm$(screen) { letter-spacing: var(--letter-spacing-sm); }
+}
+
+@mixin text;

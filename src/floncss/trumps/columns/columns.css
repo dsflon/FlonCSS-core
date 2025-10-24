@@ -1,0 +1,43 @@
+.cols {
+  /* stylelint-disable-next-line length-zero-no-unit */
+  --column-gap: 0px;
+  --column-item: calc((100% + var(--column-gap)) / 12);
+  --column-1: calc(var(--column-item) - var(--column-gap));
+  --column-2: calc(var(--column-item) * 2 - var(--column-gap));
+  --column-3: calc(var(--column-item) * 3 - var(--column-gap));
+  --column-4: calc(var(--column-item) * 4 - var(--column-gap));
+  --column-5: calc(var(--column-item) * 5 - var(--column-gap));
+  --column-6: calc(var(--column-item) * 6 - var(--column-gap));
+  --column-7: calc(var(--column-item) * 7 - var(--column-gap));
+  --column-8: calc(var(--column-item) * 8 - var(--column-gap));
+  --column-9: calc(var(--column-item) * 9 - var(--column-gap));
+  --column-10: calc(var(--column-item) * 10 - var(--column-gap));
+  --column-11: calc(var(--column-item) * 11 - var(--column-gap));
+  --column-12: calc(var(--column-item) * 12 - var(--column-gap));
+
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--column-gap);
+  row-gap: var(--row-gap, var(--column-gap));
+}
+
+.cols\:flex {
+  flex: 1;
+}
+
+@define-mixin columns $screen {
+  .cols\:1$(screen) { width: var(--column-1); }
+  .cols\:2$(screen) { width: var(--column-2); }
+  .cols\:3$(screen) { width: var(--column-3); }
+  .cols\:4$(screen) { width: var(--column-4); }
+  .cols\:5$(screen) { width: var(--column-5); }
+  .cols\:6$(screen) { width: var(--column-6); }
+  .cols\:7$(screen) { width: var(--column-7); }
+  .cols\:8$(screen) { width: var(--column-8); }
+  .cols\:9$(screen) { width: var(--column-9); }
+  .cols\:10$(screen) { width: var(--column-10); }
+  .cols\:11$(screen) { width: var(--column-11); }
+  .cols\:12$(screen) { width: var(--column-12); }
+}
+
+@mixin columns;

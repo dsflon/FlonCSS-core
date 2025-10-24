@@ -1,0 +1,28 @@
+@define-mixin font $screen {
+  /** font-family */
+  .font\:primary$(screen) { font-family: var(--font-family-primary); }
+  .font\:secondary$(screen) { font-family: var(--font-family-secondary); }
+
+  /** font-size */
+  .font\:base$(screen) { font-size: var(--font-size-base); }
+  .font\:2xl$(screen) { font-size: var(--font-size-2xl); }
+  .font\:xl$(screen) { font-size: var(--font-size-xl); }
+  .font\:lg$(screen) { font-size: var(--font-size-lg); }
+  .font\:md$(screen) { font-size: var(--font-size-md); }
+  .font\:sm$(screen) { font-size: var(--font-size-sm); }
+  .font\:xs$(screen) { font-size: var(--font-size-xs); }
+  .font\:2xs$(screen) { font-size: var(--font-size-2xs); }
+
+  /** font-weight */
+  .font\:300$(screen) { font-weight: 300; }
+  .font\:normal$(screen) { font-weight: normal; }
+  .font\:500$(screen) { font-weight: 500; }
+  .font\:600$(screen) { font-weight: 600; }
+  .font\:bold$(screen) { font-weight: bold; }
+  .font\:900$(screen) { font-weight: 900; }
+
+  /** font-style */
+  .font\:itaric$(screen) { font-style: itaric; }
+}
+
+@mixin font;

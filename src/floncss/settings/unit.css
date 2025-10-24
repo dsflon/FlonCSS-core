@@ -1,0 +1,21 @@
+:root {
+  /**
+    * pxtovmin
+    *
+    * @example 16px相当を算出する場合
+    *   body {
+    *     font-size: calc(var(--pxtovmin) * 16);
+    *   }
+  */
+  --pxtovmin: calc(100 / var(--device-criteria) * 1vmin);
+
+  /**
+    * pxtorem
+    *
+    * @example 16px相当を算出する場合
+    *   body {
+    *     font-size: calc(var(--pxtorem) * 16);
+    *   }
+  */
+  --pxtorem: calc(1 / var(--font-size-criteria) * 1rem);
+}
