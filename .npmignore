@@ -1,0 +1,8 @@
+# Development files
+.git/
+.gitignore
+.github/
+*.log
+
+# Source files that aren't needed in npm package
+postcss.config.js

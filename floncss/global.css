@@ -2,7 +2,6 @@
 @import url("./generic");
 @import url("./base");
 @import url("./objects");
-@import url("./components");
 
 /**
  * trumps レスポンシブ対応用コンポーネント

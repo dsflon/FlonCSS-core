@@ -1,14 +1,14 @@
 const path = require('path');
 const resolver = require('postcss-import-resolver');
 
-const srcDir = path.join(__dirname, './src/');
+const floncssDir = path.join(__dirname, './floncss/');
 
 module.exports = {
   plugins: {
     'postcss-import': {
       resolve: resolver({
         alias: {
-          '@floncss': path.resolve(srcDir, 'floncss'),
+          '@floncss': path.resolve(floncssDir),
         },
       }),
     },

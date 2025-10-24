@@ -1,0 +1,55 @@
+/**
+ * border や radius など罫線に関する数値を定義
+ *
+ * ※ サイトのデザインによって適宜追加・変更してください
+ * ※ この設定値は utility class で使用されるものではありません
+ */
+:root {
+  /**
+   * border default color
+   *
+   * @example css
+   *   .selector {
+   *     border-color: var(--border-default-color);
+   *   }
+   */
+  --border-default-color: var(--color-300);
+
+  /**
+   * border default style
+   *
+   * @example css
+   *   .selector {
+   *     border-style: var(--border-default-style);
+   *   }
+   */
+  --border-default-style: solid;
+
+  /**
+   * border width
+   *
+   * @example css
+   *   .selector {
+   *     border-width: var(--border-width-base);
+   *   }
+   */
+  --border-width-base: 1px;
+  --border-width-xl: 8px;
+  --border-width-lg: 4px;
+  --border-width-md: 2px;
+  --border-width-sm: 1px;
+
+  /**
+   * border radius
+   *
+   * @example css
+   *   .selector {
+   *     border-radius: var(--radius-md);
+   *   }
+   */
+  --radius-base: 4px;
+  --radius-xl: 24px;
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --radius-sm: 2px;
+}

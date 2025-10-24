@@ -1,0 +1,25 @@
+/**
+ * gutterを定義
+ * あらゆる箇所の余白に用いる
+ *
+ * @example html
+ *   <div class="mt mt:lg@md">...</div>
+ *
+ * @example css
+ *   .selector {
+ *     margin-top: var(--gutter-base);
+ *   }
+ */
+:root {
+  /** base gutter */
+  --gutter-base: 40px;
+
+  /** other gutters */
+  --gutter-2xl: 120px;
+  --gutter-xl: 100px;
+  --gutter-lg: 80px;
+  --gutter-md: 60px;
+  --gutter-sm: 20px;
+  --gutter-xs: 10px;
+  --gutter-2xs: 5px;
+}

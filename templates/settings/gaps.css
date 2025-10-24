@@ -1,0 +1,25 @@
+/**
+ * gapを定義
+ * flex, grid の gap に用いる
+ *
+ * @example html
+ *   <div class="cols gap gap:lg@md">...</div>
+ *
+ * @example css
+ *   .selector {
+ *     gap: var(--gap-base);
+ *   }
+ */
+:root {
+  /** base gap */
+  --gap-base: 40px;
+
+  /** other gaps */
+  --gap-2xl: 120px;
+  --gap-xl: 100px;
+  --gap-lg: 80px;
+  --gap-md: 60px;
+  --gap-sm: 20px;
+  --gap-xs: 10px;
+  --gap-2xs: 5px;
+}

@@ -1,0 +1,62 @@
+/* stylelint-disable */
+
+/**
+ * font-family 及び font-size を定義
+ *
+ * @example html
+ *   <div class="font:primary font:secondary@lg">font-family</div>
+ *   <div class="font:md font:lg@lg">font-size</div>
+ *
+ * @example css
+ *   body {
+ *     font-family: var(--font-family-primary);
+ *     font-size: var(--font-size-base);
+ *   }
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap");
+
+:root {
+  /**
+   * font-family
+   */
+  /* primary font-family */
+  --font-family-primary:
+    "Roboto Mono",
+    "Noto Sans JP",
+    "游ゴシック体",
+    yugothic,
+    "游ゴシック Medium",
+    "Yu Gothic Medium",
+    "游ゴシック",
+    "Yu Gothic",
+    -apple-system,
+    "BlinkMacSystemFont",
+    "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    "Meiryo",
+    sans-serif;
+
+  /* secondary font-family */
+  --font-family-secondary:
+    "Roboto Mono", monospace;
+
+  /**
+   * font-size
+   */
+  /* default font-size */
+  --font-size-default: calc(var(--font-size-criteria) * 1px);
+
+  /** base font-size */
+  --font-size-base: 1rem;
+
+  /** other font-size */
+  --font-size-2xl: calc(var(--pxtorem) * 48);
+  --font-size-xl: calc(var(--pxtorem) * 30);
+  --font-size-lg: calc(var(--pxtorem) * 24);
+  --font-size-md: calc(var(--pxtorem) * 20);
+  --font-size-sm: calc(var(--pxtorem) * 14);
+  --font-size-xs: calc(var(--pxtorem) * 12);
+  --font-size-2xs: calc(var(--pxtorem) * 10);
+}

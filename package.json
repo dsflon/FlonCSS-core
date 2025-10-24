@@ -1,10 +1,53 @@
 {
   "name": "floncss",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {},
+  "version": "1.0.0",
+  "description": "ハイブリッドCSSフレームワーク - 最小限のutility-first CSSとITCSSベースのstyle設計",
+  "main": "floncss/global.css",
+  "exports": {
+    ".": "./floncss/global.css",
+    "./core": "./dist/core.css",
+    "./global": "./floncss/global.css",
+    "./templates/*": "./templates/*",
+    "./settings/*": "./floncss/settings/*",
+    "./generic/*": "./floncss/generic/*",
+    "./trumps/*": "./floncss/trumps/*"
+  },
+  "bin": {
+    "floncss": "./cli.js"
+  },
+  "files": [
+    "floncss/",
+    "templates/",
+    "dist/",
+    "cli.js",
+    "README.md"
+  ],
+  "scripts": {
+    "build:core": "postcss floncss/core.css -o dist/core.css",
+    "build:full": "postcss floncss/global.css -o dist/floncss.css",
+    "build": "npm run build:core && npm run build:full",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "css",
+    "framework",
+    "itcss",
+    "utility-first",
+    "postcss",
+    "design-system"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "peerDependencies": {
+    "postcss": "^8.0.0"
+  },
   "devDependencies": {
     "postcss": "^8.5.3",
+    "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.0",
     "postcss-import-resolver": "^2.0.0",
     "postcss-mixins": "^11.0.3",

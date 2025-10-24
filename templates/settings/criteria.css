@@ -1,0 +1,12 @@
+/**
+ * px を 他の単位に変換するときに使う基準値
+ * 原則 setting 内でしか利用しない
+ * 基準値自体には単位を付与しない
+ */
+:root {
+  /** mobileの基準width */
+  --device-criteria: 390;
+
+  /** 基準font-size */
+  --font-size-criteria: 16;
+}

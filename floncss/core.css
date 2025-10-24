@@ -1,0 +1,19 @@
+/**
+ * FLONCSS Core
+ * 
+ * このファイルはフレームワークのコア部分のみを含みます。
+ * - generic: リセットCSS
+ * - base: 基本要素のスタイル
+ * - trumps: ユーティリティクラス
+ * 
+ * カスタマイズ可能な領域(objects, settings)は
+ * テンプレートから個別にインポートしてください。
+ */
+
+@import url("./generic");
+@import url("./base");
+@import url("./trumps");
+@import url("./trumps/media-sm");
+@import url("./trumps/media-md");
+@import url("./trumps/media-lg");
+@import url("./trumps/media-xl");
