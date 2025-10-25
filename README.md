@@ -70,7 +70,7 @@ npx floncss init ./src/styles
 @import "./styles/settings";
 
 /* 2. FLONCSS コアをインポート */
-@import "floncss/floncss/core.css";
+@import "floncss/core";
 
 /* 3. オブジェクト */
 @import "./styles/objects";

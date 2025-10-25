@@ -92,11 +92,24 @@ module.exports = {
   plugins: {
     'postcss-import': {
       resolve: (id, basedir, importOptions) => {
-        // floncss/ で始まるインポートを node_modules/floncss/ に解決
-        if (id.startsWith('floncss/')) {
-          const floncssPath = path.resolve(__dirname, 'node_modules', id);
-          return floncssPath;
+        // floncss/core → node_modules/floncss/core/index.css
+        if (id === 'floncss/core') {
+          return path.resolve(__dirname, 'node_modules/floncss/core/index.css');
         }
+        
+        // floncss/ で始まるインポートを node_modules/floncss/core/ に解決
+        if (id.startsWith('floncss/')) {
+          const subPath = id.replace('floncss/', '');
+          let resolvedPath = path.resolve(__dirname, 'node_modules/floncss/core', subPath);
+          
+          // .css 拡張子がない場合は追加を試みる
+          if (!resolvedPath.endsWith('.css')) {
+            resolvedPath += '.css';
+          }
+          
+          return resolvedPath;
+        }
+        
         // その他は通常通り解決
         return id;
       }

@@ -48,7 +48,7 @@ npx floncss init ./src/styles
 @import url("./settings");
 
 /* 2. FLONCSS コアをインポート */
-@import url("floncss/floncss/core.css");
+@import url("floncss/core");
 
 /* 3. オブジェクト */
 @import url("./objects");
@@ -65,7 +65,7 @@ npx floncss init ./src/styles
 @import "./styles/settings";
 
 /* 2. FLONCSS コアをインポート */
-@import "floncss/floncss/core.css";
+@import "floncss/core";
 
 /* 3. オブジェクト */
 @import "./styles/objects";
@@ -193,7 +193,7 @@ module.exports = {
 `custom-media.css` がインポートされていないか、順序が間違っています。
 必ず最初に `custom-media.css` をインポートしてください。
 
-### エラー: "Cannot resolve 'floncss/floncss/core.css'"
+### エラー: "Cannot resolve 'floncss/core'"
 
 PostCSS の import プラグインの設定を確認してください。
 `node_modules` からの解決が有効になっている必要があります。

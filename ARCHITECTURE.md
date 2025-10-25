@@ -31,7 +31,7 @@ templates/settings/custom-media.css # ユーザーがコピーして使用
 @import "./styles/settings/custom-media.css";
 
 /* 2. FLONCSSコア */
-@import "floncss/floncss/core.css";
+@import "floncss/core";
 
 /* 3. アプリ固有の設定 */
 @import "./styles/global.css";
@@ -61,7 +61,7 @@ templates/settings/custom-media.css # ユーザーがコピーして使用
 
 #### `package.json`
 
-- ✅ 変更: `main` フィールドを `floncss/floncss/core.css` に
+- ✅ 変更: `main` フィールドを `floncss/core` に
 - ✅ 変更: `exports` を更新してソースファイルを公開
 - ✅ 変更: `build` スクリプトを削除
 
@@ -79,7 +79,7 @@ npx floncss init ./src/styles
 ```css
 /* src/main.css */
 @import "./styles/settings/custom-media.css";
-@import "floncss/floncss/core.css";
+@import "floncss/core";
 @import "./styles/global.css";
 ```
 

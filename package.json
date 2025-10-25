@@ -2,26 +2,24 @@
   "name": "floncss",
   "version": "1.0.0",
   "description": "ハイブリッドCSSフレームワーク - 最小限のutility-first CSSとITCSSベースのstyle設計",
-  "main": "floncss/core.css",
+  "main": "core/index.css",
   "exports": {
-    ".": "./floncss/core.css",
-    "./core": "./floncss/core.css",
-    "./core.css": "./floncss/core.css",
-    "./floncss/*": "./floncss/*",
-    "./generic": "./floncss/generic/index.css",
-    "./base": "./floncss/base/index.css",
-    "./trumps": "./floncss/trumps/index.css",
-    "./trumps/*": "./floncss/trumps/*.css",
-    "./templates/*": "./templates/*",
-    "./settings/*": "./floncss/settings/*"
+    ".": "./core/index.css",
+    "./core": "./core/index.css",
+    "./core.css": "./core/index.css",
+    "./core/*": "./core/*",
+    "./generic": "./core/generic/index.css",
+    "./base": "./core/base/index.css",
+    "./trumps": "./core/trumps/index.css",
+    "./trumps/*": "./core/trumps/*.css",
+    "./templates/*": "./templates/*"
   },
   "bin": {
     "floncss": "./cli.js"
   },
   "files": [
-    "floncss/",
+    "core/",
     "templates/",
-    "dist/",
     "cli.js",
     "README.md"
   ],
