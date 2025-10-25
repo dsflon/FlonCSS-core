@@ -9,7 +9,7 @@ if (command === 'init') {
   const targetDir = process.argv[3] || './floncss';
   const templatesDir = path.join(__dirname, 'templates');
   
-  console.log('🎨 FLONCSS を初期化しています...');
+  console.log('🎨 FlonCSS を初期化しています...');
   
   try {
     // postcss.config.js を動的に生成してプロジェクト直下に配置
@@ -54,7 +54,7 @@ if (command === 'init') {
     console.log('');
     console.log(`  @import './${targetDir}/global.css';`);
     console.log('');
-    console.log('💡 global.css に FLONCSS コアと全ての設定が含まれています。');
+    console.log('💡 global.css に FlonCSS コアと全ての設定が含まれています。');
     if (postcssConfigCopied) {
       console.log('💡 postcss.config.js がプロジェクト直下に作成されました。');
     }
@@ -64,7 +64,7 @@ if (command === 'init') {
     process.exit(1);
   }
 } else {
-  console.log('FLONCSS CLI');
+  console.log('FlonCSS CLI');
   console.log('');
   console.log('使い方:');
   console.log('  npx floncss init [directory]  - カスタマイズ可能なテンプレートを初期化');
@@ -76,9 +76,9 @@ if (command === 'init') {
 
 function generatePostCSSConfig(stylesPath) {
   return `/**
- * PostCSS Configuration for FLONCSS
+ * PostCSS Configuration for FlonCSS
  * 
- * このファイルは FLONCSS を使用するための PostCSS 設定です。
+ * このファイルは FlonCSS を使用するための PostCSS 設定です。
  * 
  * 必要なプラグイン:
  * - postcss-import: @import を解決

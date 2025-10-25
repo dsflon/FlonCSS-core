@@ -1,7 +1,7 @@
 /**
- * FLONCSS グローバル設定
+ * FlonCSS グローバル設定
  * 
- * このファイルは FLONCSS を使用するためのエントリーポイントです。
+ * このファイルは FlonCSS を使用するためのエントリーポイントです。
  * 
  * settings/ と objects/ をカスタマイズ
  * 
@@ -16,7 +16,7 @@
 @import url('./objects');
 @import url('./components');
 
-/** FLONCSS コアをインポート */
+/** FlonCSS コアをインポート */
 @import url("floncss/core");
 
 /**

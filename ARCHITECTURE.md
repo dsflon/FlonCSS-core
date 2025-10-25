@@ -6,7 +6,7 @@
 
 ## 解決策
 
-**FLONCSS をソースファイルとして配布**し、ユーザーのプロジェクト側でビルドしてもらう方式に変更しました。
+**FlonCSS をソースファイルとして配布**し、ユーザーのプロジェクト側でビルドしてもらう方式に変更しました。
 
 ## 変更内容
 
@@ -30,7 +30,7 @@ templates/settings/custom-media.css # ユーザーがコピーして使用
 /* 1. カスタムメディアクエリ(必須) */
 @import "./styles/settings/custom-media.css";
 
-/* 2. FLONCSSコア */
+/* 2. FlonCSSコア */
 @import "floncss/core";
 
 /* 3. アプリ固有の設定 */
