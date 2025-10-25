@@ -104,12 +104,16 @@ module.exports = {
     'postcss-mixins': {},
     'postcss-preset-env': {
       features: {
+        // custom-media-queries は展開（必要なら）
         'custom-media-queries': {
-          preserve: false  // @custom-media を展開
+          preserve: false,
         },
-        'nesting-rules': true
-      }
-    }
+        // カスタムプロパティの変換を無効化することで、フォールバック値の生成を防ぐ
+        'custom-properties': false,
+        'nesting-rules': true,
+      },
+      preserve: false,
+    },
   }
 }
 `;

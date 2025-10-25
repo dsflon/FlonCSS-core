@@ -12,13 +12,7 @@
  * 重要: settings には custom-media.css が含まれており、必ず最初にインポートされます
  */
 
-/* 1. 設定をインポート (custom-media.css を含む) */
 @import url("./settings");
-
-/* 2. FLONCSS コアをインポート */
-@import url("floncss/floncss/core.css");
-
-/* 3. オブジェクト */
 @import url("./objects");
 
-/* ここにプロジェクト固有のスタイルを追加できます */
+@import url("floncss/floncss/core.css");
