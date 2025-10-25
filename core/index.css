@@ -4,22 +4,22 @@
  * このファイルはフレームワークのコア部分のみを含みます。
  * - generic: リセットCSS
  * - base: 基本要素のスタイル
- * - trumps: ユーティリティクラス
+ * - trumps: ユーティリティクラス（ベース）
  * 
- * 使用方法:
- * 1. templates/settings/custom-media.css をアプリ側にコピー
- * 2. アプリ側で custom-media.css をインポート
- * 3. その後 floncss/core.css をインポート
+ * レスポンシブユーティリティは含まれていません。
+ * 必要に応じて以下を追加でインポートしてください:
+ * - floncss/trumps/media-sm
+ * - floncss/trumps/media-md
+ * - floncss/trumps/media-lg
+ * - floncss/trumps/media-xl
  * 
  * @example
- * @import "./settings/custom-media.css";
- * @import "floncss/core.css";
+ * @import "./settings";
+ * @import "floncss/core";
+ * @import "floncss/trumps/media-md";
+ * @import "floncss/trumps/media-lg";
  */
 
 @import url("./generic");
 @import url("./base");
 @import url("./trumps");
-@import url("./trumps/media-sm");
-@import url("./trumps/media-md");
-@import url("./trumps/media-lg");
-@import url("./trumps/media-xl");

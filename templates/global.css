@@ -3,16 +3,30 @@
  * 
  * このファイルは FLONCSS を使用するためのエントリーポイントです。
  * 
- * 使い方:
- * 1. このテンプレートをプロジェクトにコピー (npx floncss init)
- * 2. settings/ と objects/ をカスタマイズ
- * 3. メインの CSS ファイルでこのファイルをインポート:
- *    @import "./styles/global.css";
+ * settings/ と objects/ をカスタマイズ
  * 
- * 重要: settings には custom-media.css が含まれており、必ず最初にインポートされます
+ * レスポンシブユーティリティ:
+ * 必要なブレークポイントのみコメントを外してください。
+ * 使用する場合は、settings/custom-media.css で対応する @custom-media を定義してください。
  */
 
-@import url("./settings");
-@import url("./objects");
+@import url('./settings');
+@import url('./generic');
+@import url('./base');
+@import url('./objects');
+@import url('./components');
 
+/** FLONCSS コアをインポート */
 @import url("floncss/core");
+
+/**
+ * レスポンシブユーティリティ（必要なものだけコメント解除）
+ * 使用する場合は、settings/custom-media.css で対応する @custom-media を定義してください。
+*/
+/* @import url("floncss/trumps/media-sm"); */
+/* @import url("floncss/trumps/media-md"); */
+/* @import url("floncss/trumps/media-lg"); */
+/* @import url("floncss/trumps/media-xl"); */
+
+/** 5. カスタムスタイル（必要に応じて追加） */
+/* @import url("./css/styles.css"); */
