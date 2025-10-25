@@ -35,22 +35,21 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-heading);
+  font-weight: bold;
 }
 
 h1 {
-  font-size: var(--font-size-h1);
+  font-size: var(--font-size-xl);
 }
 h2 {
-  font-size: var(--font-size-h2);
+  font-size: var(--font-size-lg);
 }
 h3 {
-  font-size: var(--font-size-h3);
+  font-size: var(--font-size-md);
 }
 
 p {
-  margin-bottom: var(--space-md);
+  margin-bottom: 1em;
 }
 
 a {
@@ -68,20 +67,20 @@ select {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
-  padding: var(--input-padding);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius);
+  padding: var(--gutter-base);
+  border: 1px solid var(--color-300);
+  border-radius: var(--radius-base);
 }
 
 button {
   font-family: inherit;
   font-size: inherit;
   cursor: pointer;
-  padding: var(--button-padding);
+  padding: var(--gutter-base);
   border: none;
   background: var(--color-primary);
   color: white;
-  border-radius: var(--border-radius);
+  border-radius: var(--radius-base);
 }
 
 ...
