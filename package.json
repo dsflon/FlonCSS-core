@@ -2,15 +2,18 @@
   "name": "floncss",
   "version": "1.0.0",
   "description": "ハイブリッドCSSフレームワーク - 最小限のutility-first CSSとITCSSベースのstyle設計",
-  "main": "floncss/global.css",
+  "main": "floncss/core.css",
   "exports": {
-    ".": "./floncss/global.css",
-    "./core": "./dist/core.css",
-    "./global": "./floncss/global.css",
+    ".": "./floncss/core.css",
+    "./core": "./floncss/core.css",
+    "./core.css": "./floncss/core.css",
+    "./floncss/*": "./floncss/*",
+    "./generic": "./floncss/generic/index.css",
+    "./base": "./floncss/base/index.css",
+    "./trumps": "./floncss/trumps/index.css",
+    "./trumps/*": "./floncss/trumps/*.css",
     "./templates/*": "./templates/*",
-    "./settings/*": "./floncss/settings/*",
-    "./generic/*": "./floncss/generic/*",
-    "./trumps/*": "./floncss/trumps/*"
+    "./settings/*": "./floncss/settings/*"
   },
   "bin": {
     "floncss": "./cli.js"
@@ -23,10 +26,8 @@
     "README.md"
   ],
   "scripts": {
-    "build:core": "postcss floncss/core.css -o dist/core.css",
-    "build:full": "postcss floncss/global.css -o dist/floncss.css",
-    "build": "npm run build:core && npm run build:full",
-    "prepublishOnly": "npm run build"
+    "build": "echo 'No build needed - source files are distributed directly'",
+    "prepublishOnly": "echo 'Publishing source files'"
   },
   "keywords": [
     "css",

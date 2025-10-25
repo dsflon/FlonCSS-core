@@ -25,92 +25,177 @@ npm install floncss
 
 ## 使い方
 
-### 方法 1: 完全版を使う(最も簡単)
+**重要**: FLONCSS は **ソースファイルとして配布** されます。`@custom-media` などの設定をアプリ側でカスタマイズできるようにするためです。
 
-```css
-/* main.css */
-@import "floncss";
-```
-
-これで全ての機能(settings, generic, base, objects, trumps)が利用可能になります。
-
-### 方法 2: コア + カスタマイズ(推奨)
-
-コア部分(generic + base + trumps)のみをインポートし、カスタマイズ可能な部分は自分のプロジェクトで管理します。
+### クイックスタート
 
 #### ステップ 1: テンプレートを初期化
 
 ```bash
-npx floncss init ./styles
+npx floncss init ./src/styles
 ```
 
-これにより、`./styles` ディレクトリに以下が作成されます:
+これにより、以下が作成されます:
 
+**`./src/styles/` ディレクトリ:**
+
+- `settings/custom-media.css` - ブレークポイント設定
 - `settings/` - デザイントークン(色、フォント、サイズなど)
 - `objects/` - 再利用可能なオブジェクト/パターン
-- `custom.css` - エントリーポイント
+- `global.css` - エントリーポイント
+
+**プロジェクト直下:**
+
+- `postcss.config.js` - PostCSS 設定 ✨
 
 #### ステップ 2: CSS ファイルでインポート
 
+**シンプルな方法 (推奨):**
+
 ```css
-/* main.css */
-@import "floncss/dist/core.css"; /* コア部分(generic + base + trumps) */
-@import "./styles/custom.css"; /* カスタマイズ部分 */
+/* src/main.css */
+@import "./styles/global.css";
 ```
 
-#### ステップ 3: カスタマイズ
+`global.css` には全てのインポートが正しい順序で含まれています。
 
-`./styles/settings/` でデザイントークンを編集:
+**カスタム方法:**
+
+個別にインポートして細かく制御することも可能:
 
 ```css
-/* ./styles/settings/colors.css */
+/* src/main.css */
+
+/* 1. 設定をインポート (custom-media.css が最初に含まれる) */
+@import "./styles/settings";
+
+/* 2. FLONCSS コアをインポート */
+@import "floncss/floncss/core.css";
+
+/* 3. オブジェクト */
+@import "./styles/objects";
+```
+
+**注意**: `./settings` は内部で `custom-media.css` を最初にインポートするため、正しい順序が保証されます。
+
+#### ステップ 3: PostCSS を設定
+
+`postcss.config.js` は自動的にプロジェクト直下に作成されます。
+
+この設定には以下が含まれています:
+
+- **`@floncss/` エイリアス**: カスタマイズした settings/objects へのパス解決
+- **`floncss/` インポート**: node_modules の FLONCSS コアへのパス解決
+- **custom-media-queries**: ブレークポイントの展開
+- **nesting-rules**: CSS ネストのサポート
+
+既存の `postcss.config.js` がある場合はスキップされるので、以下の設定を手動で統合してください:
+
+```javascript
+// postcss.config.js
+const path = require("path");
+
+module.exports = {
+  plugins: {
+    "postcss-import": {
+      resolve(id, basedir) {
+        // @floncss/* のインポートを解決
+        if (id.startsWith("@floncss/")) {
+          const relativePath = id.replace("@floncss/", "");
+          return path.resolve(__dirname, "src/styles", relativePath);
+        }
+        // floncss/ のインポートを解決
+        if (id.startsWith("floncss/")) {
+          return require.resolve(id);
+        }
+        return id;
+      },
+    },
+    "postcss-preset-env": {
+      features: {
+        "custom-media-queries": {
+          preserve: false, // @custom-media を展開
+        },
+        "nesting-rules": true,
+      },
+    },
+  },
+};
+```
+
+#### ステップ 4: カスタマイズ
+
+ブレークポイントをカスタマイズ:
+
+```css
+/* ./src/styles/settings/custom-media.css */
+@custom-media --media-sm only screen and (min-width: 576px);
+@custom-media --media-md only screen and (min-width: 768px);
+@custom-media --media-lg only screen and (min-width: 992px);
+@custom-media --media-xl only screen and (min-width: 1200px);
+```
+
+色をカスタマイズ:
+
+```css
+/* ./src/styles/settings/colors.css */
 :root {
   --color-primary: #your-brand-color;
   --color-secondary: #your-secondary-color;
 }
 ```
 
-### 方法 3: 個別インポート(上級者向け)
+### 個別インポート(上級者向け)
 
 必要な部分だけを選択してインポート:
 
 ```css
 /* main.css */
+@import "./settings/custom-media.css"; /* custom-media.css は最初 */
 @import "floncss/generic/reset.css";
-@import "floncss/settings/colors.css";
 @import "floncss/trumps/displays.css";
 /* 必要な部分だけ選択 */
 ```
 
+または、settings 全体をインポート (custom-media.css が最初に含まれる):
+
+```css
+/* main.css */
+@import "./settings"; /* custom-media.css が最初にインポートされる */
+@import "floncss/trumps/displays.css";
+```
+
+詳細は [USAGE.md](./USAGE.md) を参照してください。
+
 ## プロジェクト構成
 
 ```
-floncss/
-├── settings/       カスタマイズ可能: デザイントークン
-│   ├── colors.css
-│   ├── fonts.css
-│   ├── sizes.css
-│   └── ...
-├── generic/        コア: リセットCSS
-│   └── reset.css
-├── base/           コア: 基本要素
-│   └── base.css
-├── objects/        カスタマイズ可能: 再利用パターン
-│   ├── box.css
-│   ├── text.css
-│   └── ...
-├── trumps/         コア: ユーティリティクラス
-│   ├── colors/
-│   ├── displays/
-│   ├── gaps/
-│   └── ...
-├── core.css        generic + base + trumps
-└── global.css      全部入り
+プロジェクト
+├── postcss.config.js               # PostCSS 設定
+├── src/
+│   ├── main.css                    # エントリーポイント
+│   └── styles/
+│       ├── settings/
+│       │   ├── custom-media.css    # ⚠️ 必ず最初にインポート
+│       │   ├── colors.css          # カスタマイズ可能
+│       │   └── ...
+│       ├── objects/                # カスタマイズ可能
+│       └── global.css
+│
+└── node_modules/floncss/
+    ├── floncss/
+    │   ├── core.css                # generic + base + trumps
+    │   ├── generic/                # リセットCSS
+    │   ├── base/                   # 基本要素
+    │   ├── trumps/                 # ユーティリティクラス
+    │   └── settings/
+    │       └── custom-media.css    # デフォルト値(参考用)
+    └── templates/                  # コピー元テンプレート
 ```
 
 ## PostCSS 設定
 
-プロジェクトで PostCSS を使用する場合:
+FLONCSS を使用するには、プロジェクトで PostCSS の設定が必要です:
 
 ```javascript
 // postcss.config.js
@@ -119,7 +204,9 @@ module.exports = {
     "postcss-import": {},
     "postcss-preset-env": {
       features: {
-        "custom-media-queries": true,
+        "custom-media-queries": {
+          preserve: false, // @custom-media を展開
+        },
         "nesting-rules": true,
       },
     },
@@ -127,14 +214,21 @@ module.exports = {
 };
 ```
 
+## なぜソースファイルとして配布？
+
+FLONCSS は **ビルド済み CSS ではなく、ソースファイルとして配布** されます。理由:
+
+1. **カスタマイズ性**: `@custom-media` (ブレークポイント)はビルド時に展開されるため、アプリ側で定義する必要があります
+2. **柔軟性**: ブレークポイントやデザイントークンを自由にカスタマイズ可能
+3. **透明性**: ソースファイルとして配布されるため、内部構造が明確
+
 ## ビルド
 
-パッケージ開発者向け:
+FLONCSS の開発者向け:
 
 ```bash
-npm run build        # コアと完全版をビルド
-npm run build:core   # コア部分のみビルド
-npm run build:full   # 完全版をビルド
+# ソースファイルをそのまま使用するため、ビルドは不要
+npm run build
 ```
 
 ## CLI コマンド
@@ -146,7 +240,7 @@ npx floncss init [directory]  # テンプレートを初期化
 例:
 
 ```bash
-npx floncss init              # ./floncss-custom に初期化
+npx floncss init              # ./floncs に初期化
 npx floncss init ./styles     # ./styles に初期化
 ```
 

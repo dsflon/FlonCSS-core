@@ -1,0 +1,24 @@
+/**
+ * FLONCSS グローバル設定
+ * 
+ * このファイルは FLONCSS を使用するためのエントリーポイントです。
+ * 
+ * 使い方:
+ * 1. このテンプレートをプロジェクトにコピー (npx floncss init)
+ * 2. settings/ と objects/ をカスタマイズ
+ * 3. メインの CSS ファイルでこのファイルをインポート:
+ *    @import "./styles/global.css";
+ * 
+ * 重要: settings には custom-media.css が含まれており、必ず最初にインポートされます
+ */
+
+/* 1. 設定をインポート (custom-media.css を含む) */
+@import url("./settings");
+
+/* 2. FLONCSS コアをインポート */
+@import url("floncss/floncss/core.css");
+
+/* 3. オブジェクト */
+@import url("./objects");
+
+/* ここにプロジェクト固有のスタイルを追加できます */

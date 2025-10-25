@@ -6,8 +6,14 @@
  * - base: 基本要素のスタイル
  * - trumps: ユーティリティクラス
  * 
- * カスタマイズ可能な領域(objects, settings)は
- * テンプレートから個別にインポートしてください。
+ * 使用方法:
+ * 1. templates/settings/custom-media.css をアプリ側にコピー
+ * 2. アプリ側で custom-media.css をインポート
+ * 3. その後 floncss/core.css をインポート
+ * 
+ * @example
+ * @import "./settings/custom-media.css";
+ * @import "floncss/core.css";
  */
 
 @import url("./generic");
