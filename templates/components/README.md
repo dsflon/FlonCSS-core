@@ -45,7 +45,6 @@ header や footer など抽象度が低いコンポーネントが該当しま�
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 9999;
   width: 100vw;
   background-color: var(--color-000);
   height: var(--height-header);
@@ -69,7 +68,6 @@ header や footer など抽象度が低いコンポーネントが該当しま�
   position: fixed;
   top: var(--height-header);
   left: 0;
-  z-index: 9998;
   width: 128px;
   height: 100%;
   background-color: var(--color-100);

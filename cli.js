@@ -37,24 +37,29 @@ if (command === 'init') {
     console.log('');
     console.log(`📁 作成されたファイル:`);
     console.log(`  ${targetDir}/`);
-    console.log(`  ├── settings/          # デザイントークン`);
-    console.log(`  ├── objects/           # 再利用可能なコンポーネント`);
+    console.log(`  ├── settings/          # デザイントークン（CSS変数、ブレークポイント）`);
+    console.log(`  ├── generic/           # 追加リセット用（オプション）`);
+    console.log(`  ├── base/              # 追加要素スタイル用（オプション）`);
+    console.log(`  ├── objects/           # 再利用可能なUIパーツ`);
+    console.log(`  ├── components/        # プロジェクト固有のコンポーネント`);
     console.log(`  └── global.css         # エントリーポイント`);
     if (postcssConfigCopied) {
       console.log(`  `);
-      console.log(`  ./postcss.config.js    # PostCSS 設定 (プロジェクト直下)`);
+      console.log(`  ./postcss.config.js    # PostCSS 設定（プロジェクト直下）`);
     }
     console.log('');
     console.log('次のステップ:');
-    console.log(`1. ${targetDir}/settings/custom-media.css でブレークポイントをカスタマイズ`);
-    console.log(`2. ${targetDir}/settings/ でデザイントークンをカスタマイズ`);
-    console.log(`3. ${targetDir}/objects/ でオブジェクトスタイルをカスタマイズ`);
+    console.log(`1. ${targetDir}/settings/ でデザイントークンをカスタマイズ`);
+    console.log(`2. ${targetDir}/objects/ で再利用可能なUIパーツを作成`);
+    console.log(`3. ${targetDir}/components/ でプロジェクト固有のコンポーネントを作成`);
+    console.log(`4. ${targetDir}/global.css で必要なレスポンシブユーティリティを選択`);
     console.log('');
-    console.log('📝 使い方 (シンプル):');
+    console.log('📝 使い方:');
     console.log('');
     console.log(`  @import './${targetDir}/global.css';`);
     console.log('');
-    console.log('💡 global.css に FlonCSS コアと全ての設定が含まれています。');
+    console.log('💡 global.css には FlonCSS コア（Generic, Base, Trumps）が含まれています。');
+    console.log('💡 詳細は各ディレクトリの README.md を参照してください。');
     if (postcssConfigCopied) {
       console.log('💡 postcss.config.js がプロジェクト直下に作成されました。');
     }
