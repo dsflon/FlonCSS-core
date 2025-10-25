@@ -9,6 +9,7 @@ module.exports = {
       resolve: resolver({
         alias: {
           '@floncss': path.resolve(floncssDir),
+          'floncss/trumps': path.join(__dirname, 'node_modules/floncss/core/trumps'),
         },
       }),
     },

@@ -76,10 +76,12 @@ if (command === 'init') {
   console.log('');
   console.log('例:');
   console.log('  npx floncss init              - ./floncss に初期化');
-  console.log('  npx floncss init ./styles     - ./styles に初期化');
+  console.log('  npx floncss init ./path/to/floncss     - ./path/to/floncss に初期化');
 }
 
 function generatePostCSSConfig(stylesPath) {
+  const srcDir = stylesPath || 'floncss';
+
   return `/**
  * PostCSS Configuration for FlonCSS
  * 
@@ -92,32 +94,17 @@ function generatePostCSSConfig(stylesPath) {
  */
 
 const path = require('path');
+const resolver = require('postcss-import-resolver');
 
 module.exports = {
   plugins: {
     'postcss-import': {
-      resolve: (id, basedir, importOptions) => {
-        // floncss/core → node_modules/floncss/core/index.css
-        if (id === 'floncss/core') {
-          return path.resolve(__dirname, 'node_modules/floncss/core/index.css');
-        }
-        
-        // floncss/ で始まるインポートを node_modules/floncss/core/ に解決
-        if (id.startsWith('floncss/')) {
-          const subPath = id.replace('floncss/', '');
-          let resolvedPath = path.resolve(__dirname, 'node_modules/floncss/core', subPath);
-          
-          // .css 拡張子がない場合は追加を試みる
-          if (!resolvedPath.endsWith('.css')) {
-            resolvedPath += '.css';
-          }
-          
-          return resolvedPath;
-        }
-        
-        // その他は通常通り解決
-        return id;
-      }
+      resolve: resolver({
+        alias: {
+          '@floncss': path.join(__dirname, '${srcDir}'),
+          'floncss/trumps': path.join(__dirname, 'node_modules/floncss/core/trumps'),
+        },
+      }),
     },
     'postcss-mixins': {},
     'postcss-preset-env': {
@@ -131,6 +118,13 @@ module.exports = {
         'nesting-rules': true,
       },
       preserve: false,
+    },
+    'cssnano': {
+      preset: ['default', {
+        discardComments: {
+          removeAll: true,
+        },
+      }],
     },
   }
 }

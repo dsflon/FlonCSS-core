@@ -8,7 +8,6 @@ html {
 body {
   line-height: var(--line-height-base);
   font-size: var(--font-size-base);
-  color: var(--color-000);
   letter-spacing: var(--letter-spacing-base);
 }
 

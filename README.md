@@ -21,12 +21,6 @@ FlonCSS は、ユーティリティクラスとコンポーネントベース設
 npm install floncss
 ```
 
-必要な依存関係もインストールします:
-
-```bash
-npm install postcss postcss-cli postcss-import postcss-mixins postcss-preset-env
-```
-
 ## クイックスタート
 
 ### 1. テンプレートを初期化
@@ -36,7 +30,7 @@ npm install postcss postcss-cli postcss-import postcss-mixins postcss-preset-env
 npx floncss init
 
 // ディレクトリを指定して構成する場合
-npx floncss init ./src/styles
+npx floncss init ./path/to/floncss
 ```
 
 これにより以下が作成されます:

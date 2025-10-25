@@ -52,17 +52,17 @@ FlonCSS は **ITCSS（Inverted Triangle CSS）** アーキテクチャに基づ�
 npx floncss init
 
 // ディレクトリを指定して構成する場合
-npx floncss init ./src/styles
+npx floncss init ./path/to/floncss
 ```
 
 これにより、以下が作成されます:
 
-- `./path/to/settings/` - カスタマイズ可能な設定
-- `./path/to/generic/` - 追加リセット用（オプション）
-- `./path/to/base/` - 追加要素スタイル用（オプション）
-- `./path/to/objects/` - オブジェクトパーツ
-- `./path/to/components/` - プロジェクト固有のコンポーネント
-- `./path/to/global.css` - エントリーポイント
+- `./path/to/floncss/settings/` - カスタマイズ可能な設定
+- `./path/to/floncss/generic/` - 追加リセット用（オプション）
+- `./path/to/floncss/base/` - 追加要素スタイル用（オプション）
+- `./path/to/floncss/objects/` - オブジェクトパーツ
+- `./path/to/floncss/components/` - プロジェクト固有のコンポーネント
+- `./path/to/floncss/global.css` - エントリーポイント
 - `./postcss.config.js` - PostCSS 設定（プロジェクト直下）
 
 ### 2. global.css の構成
