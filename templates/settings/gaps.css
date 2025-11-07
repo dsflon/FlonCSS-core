@@ -11,15 +11,28 @@
  *   }
  */
 :root {
-  /** base gap */
+  /** default gaps */
   --gap-base: 40px;
+  --gap-2xl: 96px;
+  --gap-xl: 80px;
+  --gap-lg: 64px;
+  --gap-md: 48px;
+  --gap-sm: 32px;
+  --gap-xs: 24px;
+  --gap-2xs: 16px;
 
-  /** other gaps */
-  --gap-2xl: 120px;
-  --gap-xl: 100px;
-  --gap-lg: 80px;
-  --gap-md: 60px;
-  --gap-sm: 20px;
-  --gap-xs: 10px;
-  --gap-2xs: 5px;
+  /*
+   * ex) --media-md gaps
+   * 特定のブレイクポイントで変更する場合はこちらを有効化
+   */
+  /* @media (--media-md) {
+    --gap-base: 40px;
+    --gap-2xl: 96px;
+    --gap-xl: 80px;
+    --gap-lg: 64px;
+    --gap-md: 48px;
+    --gap-sm: 32px;
+    --gap-xs: 24px;
+    --gap-2xs: 16px;
+  } */
 }

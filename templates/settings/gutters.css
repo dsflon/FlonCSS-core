@@ -11,15 +11,29 @@
  *   }
  */
 :root {
-  /** base gutter */
-  --gutter-base: 40px;
+  /** default gutters */
+  --gutter-base: 32px;
+  --gutter-2xl: 128px;
+  --gutter-xl: 80px;
+  --gutter-lg: 64px;
+  --gutter-md: 48px;
+  --gutter-sm: 16px;
+  --gutter-xs: 8px;
+  --gutter-2xs: 4px;
 
-  /** other gutters */
-  --gutter-2xl: 120px;
-  --gutter-xl: 100px;
-  --gutter-lg: 80px;
-  --gutter-md: 60px;
-  --gutter-sm: 20px;
-  --gutter-xs: 10px;
-  --gutter-2xs: 5px;
+
+  /*
+   * ex) --media-md gutters
+   * 特定のブレイクポイントで変更する場合はこちらを有効化
+   */
+  /* @media (--media-md) {
+    --gutter-base: 32px;
+    --gutter-2xl: 128px;
+    --gutter-xl: 80px;
+    --gutter-lg: 64px;
+    --gutter-md: 48px;
+    --gutter-sm: 16px;
+    --gutter-xs: 8px;
+    --gutter-2xs: 4px;
+  } */
 }

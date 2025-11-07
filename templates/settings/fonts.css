@@ -45,18 +45,26 @@
   /**
    * font-size
    */
-  /* default font-size */
-  --font-size-default: calc(var(--font-size-criteria) * 1px);
+  /** default font-size */
+  --font-size-2xl: 64px;
+  --font-size-xl: 48px;
+  --font-size-lg: 24px;
+  --font-size-md: 20px;
+  --font-size-sm: 14px;
+  --font-size-xs: 12px;
+  --font-size-2xs: 10px;
 
-  /** base font-size */
-  --font-size-base: 1rem;
-
-  /** other font-size */
-  --font-size-2xl: calc(var(--pxtorem) * 48);
-  --font-size-xl: calc(var(--pxtorem) * 30);
-  --font-size-lg: calc(var(--pxtorem) * 24);
-  --font-size-md: calc(var(--pxtorem) * 20);
-  --font-size-sm: calc(var(--pxtorem) * 14);
-  --font-size-xs: calc(var(--pxtorem) * 12);
-  --font-size-2xs: calc(var(--pxtorem) * 10);
+  /*
+   * ex) --media-md font-size
+   * 特定のブレイクポイントで変更する場合はこちらを有効化
+   */
+  /* @media (--media-md) {
+    --font-size-2xl: 64px;
+    --font-size-xl: 48px;
+    --font-size-lg: 24px;
+    --font-size-md: 20px;
+    --font-size-sm: 14px;
+    --font-size-xs: 12px;
+    --font-size-2xs: 10px;
+  } */
 }

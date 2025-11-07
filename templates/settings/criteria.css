@@ -9,4 +9,5 @@
 
   /** 基準font-size */
   --font-size-criteria: 16;
+  --font-size-default: calc(var(--font-size-criteria) * 1px);
 }
