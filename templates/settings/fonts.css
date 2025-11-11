@@ -46,6 +46,7 @@
    * font-size
    */
   /** default font-size */
+  --font-size-base: 16px;
   --font-size-2xl: 64px;
   --font-size-xl: 48px;
   --font-size-lg: 24px;
