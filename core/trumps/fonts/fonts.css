@@ -22,7 +22,7 @@
   .font\:900$(screen) { font-weight: 900; }
 
   /** font-style */
-  .font\:itaric$(screen) { font-style: itaric; }
+  .font\:italic$(screen) { font-style: italic; }
 }
 
 @mixin font;

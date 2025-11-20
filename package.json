@@ -1,6 +1,6 @@
 {
   "name": "floncss",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "ハイブリッドCSSフレームワーク - 最小限のutility-first CSSとITCSSベースのstyle設計",
   "main": "core/index.css",
   "exports": {
