@@ -37,10 +37,10 @@ if (command === 'init') {
     console.log('');
     console.log(`📁 作成されたファイル:`);
     console.log(`  ${targetDir}/`);
-    console.log(`  ├── settings/          # デザイントークン（CSS変数、ブレークポイント）`);
-    console.log(`  ├── generic/           # 追加リセット用（オプション）`);
-    console.log(`  ├── base/              # 追加要素スタイル用（オプション）`);
-    console.log(`  ├── objects/           # 再利用可能なUIパーツ`);
+    console.log(`  ├── settings/          # デザイントークン（色、フォント、ブレークポイント）`);
+    console.log(`  ├── generic/           # リセットCSS（任意で変更してください）`);
+    console.log(`  ├── base/              # 基本要素スタイル（任意で変更してください）`);
+    console.log(`  ├── objects/           # 再利用可能なUIパーツ（任意で変更してください）`);
     console.log(`  ├── components/        # プロジェクト固有のコンポーネント`);
     console.log(`  └── global.css         # エントリーポイント`);
     if (postcssConfigCopied) {

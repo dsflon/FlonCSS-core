@@ -50,9 +50,9 @@ npx postcss path/to/global.css -o dist/global.css
 your-project/
 ├── path/to/
 │   ├── settings/      # デザイントークン（色、フォント、ブレークポイント）
-│   ├── generic/       # 追加リセット（オプション）
-│   ├── base/          # 追加要素スタイル（オプション）
-│   ├── objects/       # 再利用可能なUIパーツ
+│   ├── generic/       # リセットCSS(任意で変更してください)
+│   ├── base/          # 基本要素スタイル(任意で変更してください)
+│   ├── objects/       # 再利用可能なUIパーツ(任意で変更してください)
 │   ├── components/    # プロジェクト固有のコンポーネント
 │   └── global.css     # エントリーポイント
 ├── postcss.config.js
@@ -60,8 +60,7 @@ your-project/
 
 node_modules/
 └── floncss/
-    ├── core/              # FlonCSSコア（Generic, Base, Trumps）
-    │   ├── generic/       # リセットCSS
+    ├── core/              # FlonCSSコア（Base, Trumps）
     │   ├── base/          # 基本要素スタイル
     │   ├── trumps/        # ユーティリティクラス
     │   └── index.css
