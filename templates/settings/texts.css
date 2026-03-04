@@ -28,11 +28,11 @@
    * letter-spacingを定義
    *
    * @example html
-   *   <div class="letter-spacing line-height:lg@md">...</div>
+   *   <div class="letter-spacing letter-spacing:lg@md">...</div>
    *
    * @example css
    *   .selector {
-   *     line-height: var(--letter-spacing-base);
+   *     letter-spacing: var(--letter-spacing-base);
    *   }
    */
   /* base letter-spacing */
