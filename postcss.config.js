@@ -22,8 +22,6 @@ module.exports = {
         },
         'nesting-rules': false,
       },
-      // custom-media-queries/custom-properties の preserve オプションはココで指定
-      // @see https://github.com/csstools/postcss-preset-env#preserve
       preserve: false,
     },
   },
