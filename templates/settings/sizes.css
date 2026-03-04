@@ -20,6 +20,7 @@
    * ex) --media-md width
    * 特定のブレイクポイントで変更する場合はこちらを有効化
    */
+
   /* @media (--media-md) {
     --width-content-max: 1440px;
     --width-content-min: 1024px;
@@ -39,6 +40,7 @@
    * ex) --media-md height
    * 特定のブレイクポイントで変更する場合はこちらを有効化
    */
+
   /* @media (--media-md) {
     --height-header: 90px;
   } */

@@ -115,7 +115,7 @@ module.exports = {
         },
         // カスタムプロパティの変換を無効化することで、フォールバック値の生成を防ぐ
         'custom-properties': false,
-        'nesting-rules': true,
+        'nesting-rules': false,
       },
       preserve: false,
     },

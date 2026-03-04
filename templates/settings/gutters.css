@@ -21,11 +21,11 @@
   --gutter-xs: 8px;
   --gutter-2xs: 4px;
 
-
   /*
    * ex) --media-md gutters
    * 特定のブレイクポイントで変更する場合はこちらを有効化
    */
+
   /* @media (--media-md) {
     --gutter-base: 32px;
     --gutter-2xl: 128px;
