@@ -7,3 +7,4 @@
 @import url("./columns/columns");
 @import url("./grid/grid");
 @import url("./gaps/gaps"); /** column より下に配置 */
+@import url("./sizes/sizes");

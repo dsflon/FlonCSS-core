@@ -1,0 +1,58 @@
+@define-mixin size $screen {
+  /** width */
+  .width\:auto$(screen) { width: auto; }
+  .width\:full$(screen) { width: 100%; }
+  .width\:screen$(screen) { width: 100vw; }
+  .width\:min$(screen) { width: min-content; }
+  .width\:max$(screen) { width: max-content; }
+  .width\:fit$(screen) { width: fit-content; }
+
+  /** min-width */
+  .min-width\:0$(screen) { min-width: 0; }
+  .min-width\:full$(screen) { min-width: 100%; }
+  .min-width\:min$(screen) { min-width: min-content; }
+  .min-width\:max$(screen) { min-width: max-content; }
+  .min-width\:fit$(screen) { min-width: fit-content; }
+
+  /** max-width */
+  .max-width\:none$(screen) { max-width: none; }
+  .max-width\:full$(screen) { max-width: 100%; }
+  .max-width\:min$(screen) { max-width: min-content; }
+  .max-width\:max$(screen) { max-width: max-content; }
+  .max-width\:fit$(screen) { max-width: fit-content; }
+
+  /** height */
+  .height\:auto$(screen) { height: auto; }
+  .height\:full$(screen) { height: 100%; }
+  .height\:screen$(screen) { height: 100vh; }
+  .height\:screen-dvh$(screen) { height: 100dvh; }
+  .height\:screen-lvh$(screen) { height: 100lvh; }
+  .height\:screen-svh$(screen) { height: 100svh; }
+  .height\:min$(screen) { height: min-content; }
+  .height\:max$(screen) { height: max-content; }
+  .height\:fit$(screen) { height: fit-content; }
+
+  /** min-height */
+  .min-height\:0$(screen) { min-height: 0; }
+  .min-height\:full$(screen) { min-height: 100%; }
+  .min-height\:screen$(screen) { min-height: 100vh; }
+  .min-height\:screen-dvh$(screen) { min-height: 100dvh; }
+  .min-height\:screen-lvh$(screen) { min-height: 100lvh; }
+  .min-height\:screen-svh$(screen) { min-height: 100svh; }
+  .min-height\:min$(screen) { min-height: min-content; }
+  .min-height\:max$(screen) { min-height: max-content; }
+  .min-height\:fit$(screen) { min-height: fit-content; }
+
+  /** max-height */
+  .max-height\:none$(screen) { max-height: none; }
+  .max-height\:full$(screen) { max-height: 100%; }
+  .max-height\:screen$(screen) { max-height: 100vh; }
+  .max-height\:screen-dvh$(screen) { max-height: 100dvh; }
+  .max-height\:screen-lvh$(screen) { max-height: 100lvh; }
+  .max-height\:screen-svh$(screen) { max-height: 100svh; }
+  .max-height\:min$(screen) { max-height: min-content; }
+  .max-height\:max$(screen) { max-height: max-content; }
+  .max-height\:fit$(screen) { max-height: fit-content; }
+}
+
+@mixin size;
