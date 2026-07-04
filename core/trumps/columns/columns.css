@@ -1,3 +1,8 @@
+/**
+ * @deprecated Flex ベースの 12 カラムシステム（.cols / cols:N）は非推奨です。
+ * CSS Grid ベースの .grid / grid-cols:N / col-span:N への移行を推奨します。
+ * 将来のメジャーバージョンで削除される可能性があります。
+ */
 .cols {
   /* stylelint-disable-next-line length-zero-no-unit */
   --column-gap: 0px;

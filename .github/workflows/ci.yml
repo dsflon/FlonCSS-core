@@ -16,6 +16,16 @@ jobs:
         with:
           node-version: 20
 
+      - name: プリビルド CSS を生成
+        run: |
+          npm ci
+          npm run build
+          test -s dist/floncss.css
+          test -s dist/floncss.min.css
+          # ネイティブ @layer が維持されていること（ポリフィルで潰されていないこと）
+          grep -qF '@layer settings, generic, base, trumps;' dist/floncss.css
+          ! grep -qF ':not(#' dist/floncss.css
+
       - name: テストプロジェクトを作成して floncss init を実行
         run: |
           mkdir -p /tmp/testproj
@@ -29,7 +39,7 @@ jobs:
       - name: レスポンシブユーティリティを有効化してビルド
         run: |
           cd /tmp/testproj
-          sed -i 's|/\* @import url("floncss/trumps/media-md"); \*/|@import url("floncss/trumps/media-md");|' floncss/global.css
+          sed -i 's|/\* @import url("floncss/trumps/media-md") layer(trumps); \*/|@import url("floncss/trumps/media-md") layer(trumps);|' floncss/global.css
           npx postcss floncss/global.css -o dist/global.css
 
       - name: ビルド出力を検証
@@ -44,6 +54,10 @@ jobs:
           grep -qF '@media only screen and (min-width:768px)' dist/global.css
           # grid コンテナの変数が定義されていること
           grep -qF -- '--grid-1:repeat(1,minmax(0,1fr))' dist/global.css
+          # カスケードレイヤーが宣言され、trumps レイヤーが最後であること
+          grep -qF '@layer settings, generic, base, objects, components, trumps' dist/global.css
+          # ポリフィルで @layer が潰されていないこと
+          ! grep -qF ':not(#' dist/global.css
           # 未解決の @mixin / $(screen) が残っていないこと
           ! grep -q '@mixin' dist/global.css
           ! grep -qF '$(screen)' dist/global.css

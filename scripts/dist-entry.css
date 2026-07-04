@@ -1,0 +1,18 @@
+/**
+ * プリビルド CSS（dist/floncss.css / dist/floncss.min.css）のエントリーポイント
+ *
+ * テンプレートのデフォルト設定（デザイントークン・リセット・基本要素スタイル）と
+ * 全ブレークポイントのユーティリティを含む「そのまま使える」1 ファイルを生成します。
+ * カスタマイズしたい場合は `npx floncss init` による通常のワークフローを使用してください。
+ */
+
+@layer settings, generic, base, trumps;
+
+@import url('../templates/settings/index.css') layer(settings);
+@import url('../templates/generic/index.css') layer(generic);
+@import url('../templates/base/index.css') layer(base);
+@import url('../core/trumps/index.css') layer(trumps);
+@import url('../core/trumps/media-sm.css') layer(trumps);
+@import url('../core/trumps/media-md.css') layer(trumps);
+@import url('../core/trumps/media-lg.css') layer(trumps);
+@import url('../core/trumps/media-xl.css') layer(trumps);

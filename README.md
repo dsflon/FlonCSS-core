@@ -6,20 +6,50 @@ https://floncss.dsflon.net/
 
 FlonCSS は、ユーティリティクラスとコンポーネントベース設計を組み合わせた、柔軟でスケーラブルな CSS フレームワークです。
 
-## 特徴
+## 設計思想 - なぜ FlonCSS か
 
-- 🎨 **ITCSS ベースのアーキテクチャ**: 明確な階層構造で保守性の高い CSS
-- 🔧 **カスタマイズ可能**: デザイントークンを自由にカスタマイズ
-- 📦 **ユーティリティファースト**: 最小限のユーティリティクラスを内蔵
-- 🎯 **レスポンシブ対応**: ブレークポイントごとのユーティリティを選択可能
-- 💡 **PostCSS**: 最新の CSS 機能を使用可能
-- 📝 **型安全**: CSS 変数によるデザイントークン管理
+**Tailwind ほど極端でなく、BEM ほど冗長でない「中庸」のフレームワークです。**
+
+### ユーティリティは「レイアウトのリズム」、装飾は「コンポーネント」
+
+「全部ユーティリティ」で書くと HTML がクラスの羅列になり、「全部コンポーネント」で書くと余白調整のためだけにクラスを量産することになります。FlonCSS はその中間に線を引きます。
+
+- **ユーティリティ（Trumps）** が担うのは、余白・整列・カラム・タイポグラフィのリズムといった「デザインカンプ間で揺れる部分」だけ
+- **色や装飾などのデザインのアイデンティティ** は Objects / Components レイヤーに CSS として書く
+
+この線引きにより、HTML は読みやすく保たれ、CSS は再利用可能に保たれます。
+
+### トークン駆動 - 設定ファイルではなく CSS 変数
+
+`mt:lg` は「なんとなくの 64px」ではなく、デザイントークン `--gutter-lg` への参照です。すべてのユーティリティが CSS カスタムプロパティを参照するため:
+
+- **テーマ変更は CSS 変数の書き換えだけ**。設定ファイルの編集や再ビルドは不要
+- 値のスケールが settings レイヤーに一元化され、デザインの一貫性が構造的に守られる
+- 実行時に変更できるため、ダークモードやマルチテーマへの拡張も自然
+
+### ITCSS × カスケードレイヤー（@layer）
+
+「詳細度の逆三角形」というITCSS の規律を、`@layer` によってブラウザネイティブに担保します。import の順序に頼らず、レイヤー宣言によって「ユーティリティは常にコンポーネントに勝つ」ことが言語仕様レベルで保証されるため、`!important` は不要です。
+
+### 素の CSS で出荷
+
+ランタイム JS ゼロ、クラス名スキャナー不要。ビルドは PostCSS のみで、プリビルド版なら `<link>` 1 行で導入できます。
 
 ## インストール
 
 ```bash
 npm install floncss
 ```
+
+### すぐに試す（プリビルド CSS）
+
+カスタマイズせずにまず試したい場合は、デフォルト設定を焼き込んだプリビルド CSS を読み込むだけで使えます:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/floncss/dist/floncss.min.css">
+```
+
+※ プリビルド版は全ブレークポイントのユーティリティとテンプレートのデフォルトトークンを含みます。デザイントークンのカスタマイズやビルドサイズの最適化を行う場合は、次のテンプレートワークフローを使用してください。
 
 ## クイックスタート
 
@@ -82,6 +112,27 @@ FlonCSS は**ITCSS（Inverted Triangle CSS）**に基づいて設計されてい
 
 ※ Generic / Base のスタイルは `npx floncss init` でプロジェクト側にコピーされるため、自由に編集できます。FlonCSS コア側の generic / base レイヤーは現状プレースホルダーです。
 
+### カスケードレイヤー（@layer）によるレイヤー担保
+
+テンプレートの `global.css` は、ITCSS のレイヤー順序をネイティブの `@layer` で宣言します:
+
+```css
+@layer settings, generic, base, objects, components, trumps;
+
+@import url('./settings') layer(settings);
+@import url('./generic') layer(generic);
+@import url('./base') layer(base);
+@import url('./objects') layer(objects);
+@import url('./components') layer(components);
+@import url('floncss/core') layer(trumps);
+```
+
+- import の記述順に関係なく、`@layer` 宣言の順序（後ろほど強い）が適用されます
+- ユーティリティ（trumps）がコンポーネントより常に優先されることが保証されます
+- **注意**: レイヤーに属さない CSS はすべてのレイヤーより優先されます。カスタムスタイルは `components` などのレイヤーに入れてください（意図的にユーティリティを上書きしたい場合を除く）
+
+なお、`floncss/core` を直接インポートする場合はレイヤーの利用は任意です（コア自体はレイヤー非依存で、どのレイヤーに入れるかは利用側が決められます）。
+
 詳細は [templates/README.md](./templates/README.md) を参照してください。
 
 ## 使い方
@@ -138,10 +189,10 @@ FlonCSS は**ITCSS（Inverted Triangle CSS）**に基づいて設計されてい
 /* path/to/global.css */
 
 /* 必要なブレークポイントのみコメント解除 */
-@import url("floncss/trumps/media-md");
-@import url("floncss/trumps/media-lg");
-/* @import url("floncss/trumps/media-sm"); */
-/* @import url("floncss/trumps/media-xl"); */
+@import url("floncss/trumps/media-md") layer(trumps);
+@import url("floncss/trumps/media-lg") layer(trumps);
+/* @import url("floncss/trumps/media-sm") layer(trumps); */
+/* @import url("floncss/trumps/media-xl") layer(trumps); */
 ```
 
 ### HTML での使用
@@ -172,7 +223,7 @@ FlonCSS コアには以下のユーティリティクラスが含まれていま
 ### Display & Layout
 
 - **Display**: `block`, `inline-block`, `inline`, `flex`, `inline-flex`, `table`, `inline-table`, `grid`, `inline-grid`, `contents`, `hidden`, `visible`
-  - ※ デフォルトの gap: `.flex` / `.inline-flex` には `column-gap: var(--gap-base)` が初期適用されます。`.grid` / `.inline-grid` / `.cols` の初期 gap は `0` です。いずれも `gap:*` / `row-gap:*` ユーティリティで変更でき、`gap:none` で解除できます。
+  - ※ gap はオプトイン: `.flex` / `.inline-flex` / `.grid` / `.inline-grid` / `.cols` の初期 gap はすべて `0` です。`gap:*` / `row-gap:*` ユーティリティで指定してください（`row-gap` 未指定時は `gap:*` の値にフォールバックします）。
 - **Flexbox**:
   - **Align Items**: `items:inherit`, `items:normal`, `items:stretch`, `items:center`, `items:start`, `items:end`, `items:flex-start`, `items:flex-end`
   - **Align Self**: `self:inherit`, `self:baseline`, `self:auto`, `self:center`, `self:flex-start`, `self:flex-end`
@@ -230,10 +281,11 @@ FlonCSS コアには以下のユーティリティクラスが含まれていま
 - **Border Color**: `border-color:primary`, `border-color:900`～`border-color:000`, `border-color:red` など
 - **Border Radius**: `radius`, `radius:xl`, `radius:lg`, `radius:md`, `radius:sm`, `radius:none`
 
-### Columns (Flex レイアウト)
+### Columns (Flex レイアウト) ⚠️ 非推奨
 
 - **Columns**: `.cols` クラス内で `cols:1`～`cols:12`, `cols:flex` を使用
   - 12 カラムの Flex ベースグリッドシステム
+  - ⚠️ **v3 で非推奨になりました。** CSS Grid ベースの `grid` / `grid-cols:N` / `col-span:N` への移行を推奨します。将来のメジャーバージョンで削除される可能性があります
 
 ### Sizes
 
@@ -273,7 +325,7 @@ FlonCSS コアには以下のユーティリティクラスが含まれていま
     "watch:css": "postcss src/main.css -o dist/main.css --watch"
   },
   "dependencies": {
-    "floncss": "^2.1.0"
+    "floncss": "^3.0.0"
   },
   "devDependencies": {
     "postcss": "^8.5.3",
@@ -284,6 +336,16 @@ FlonCSS コアには以下のユーティリティクラスが含まれていま
   }
 }
 ```
+
+## v3.0.0 の破壊的変更
+
+v2 からアップグレードする場合は以下に注意してください:
+
+- **`.flex` / `.inline-flex` のデフォルト gap を廃止** — v2 では `column-gap: var(--gap-base)` が暗黙に適用されていましたが、v3 では他のコンテナと同じく `0` になりました。従来の見た目を維持するには flex コンテナに `gap` クラスを追加してください。また、`row-gap` 未指定時のフォールバックが `0` から `gap:*` の値に変わりました
+- **レガシー `lh:*` クラスを削除** — `line-height:*` に移行してください
+- **テンプレートの `global.css` が `@layer` ベースに** — 既存プロジェクトのテンプレートには影響しませんが、新規 init から適用されます。レイヤーに属さないカスタム CSS はユーティリティより優先される点に注意してください
+- **`.cols`（Flex ベース 12 カラム）を非推奨化** — 動作は維持されますが、CSS Grid ユーティリティへの移行を推奨します
+- **テンプレートの Google Fonts `@import` をデフォルト無効化** — Web フォントが必要な場合は `settings/fonts.css` でコメント解除してください
 
 ## ドキュメント
 

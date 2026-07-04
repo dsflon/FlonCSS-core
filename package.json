@@ -1,6 +1,6 @@
 {
   "name": "floncss",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "ハイブリッドCSSフレームワーク - 最小限のutility-first CSSとITCSSベースのstyle設計",
   "main": "core/index.css",
   "exports": {
@@ -12,7 +12,10 @@
     "./base": "./core/base/index.css",
     "./trumps": "./core/trumps/index.css",
     "./trumps/*": "./core/trumps/*",
-    "./templates/*": "./templates/*"
+    "./templates/*": "./templates/*",
+    "./floncss.css": "./dist/floncss.css",
+    "./floncss.min.css": "./dist/floncss.min.css",
+    "./dist/*": "./dist/*"
   },
   "bin": {
     "floncss": "./cli.js"
@@ -20,12 +23,13 @@
   "files": [
     "core/",
     "templates/",
+    "dist/",
     "cli.js",
     "README.md"
   ],
   "scripts": {
-    "build": "echo 'No build needed - source files are distributed directly'",
-    "prepublishOnly": "echo 'Publishing source files'"
+    "build": "node scripts/build-dist.js",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "css",
@@ -53,6 +57,15 @@
     "postcss-preset-env": "^11.2.0",
     "postcss-import-resolver": "^2.0.0",
     "cssnano": "^7.1.2"
+  },
+  "peerDependenciesMeta": {
+    "postcss": { "optional": true },
+    "postcss-cli": { "optional": true },
+    "postcss-import": { "optional": true },
+    "postcss-mixins": { "optional": true },
+    "postcss-preset-env": { "optional": true },
+    "postcss-import-resolver": { "optional": true },
+    "cssnano": { "optional": true }
   },
   "devDependencies": {
     "postcss": "^8.5.8",

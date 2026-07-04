@@ -21,6 +21,7 @@ module.exports = {
           preserve: false,
         },
         'nesting-rules': false,
+        'cascade-layers': false,
       },
       preserve: false,
     },

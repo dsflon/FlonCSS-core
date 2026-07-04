@@ -115,6 +115,8 @@ module.exports = {
         // カスタムプロパティの変換を無効化することで、フォールバック値の生成を防ぐ
         'custom-properties': false,
         'nesting-rules': false,
+        // @layer はネイティブサポートされているため、ポリフィル（詳細度ハックへの変換）を無効化
+        'cascade-layers': false,
       },
       preserve: false,
     },

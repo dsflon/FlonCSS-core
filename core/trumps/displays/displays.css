@@ -12,13 +12,18 @@
   .hidden$(screen) { display: none; }
   .visible$(screen) { display: unset; }
 
+  /**
+   * flex / inline-flex の gap はオプトイン（gap:* / row-gap:* で指定）。
+   * デフォルトは 0 で、grid / cols と同じ挙動に統一している。
+   * row-gap 未指定時は column-gap にフォールバックする（gap ショートハンドと同じ感覚）。
+   */
   .flex$(screen),
   .inline-flex$(screen) {
-    --column-gap: var(--gap-base);
-    --row-gap-base: 0;
+    /* stylelint-disable-next-line length-zero-no-unit */
+    --column-gap: 0px;
 
     column-gap: var(--column-gap);
-    row-gap: var(--row-gap, var(--row-gap-base));
+    row-gap: var(--row-gap, var(--column-gap));
   }
 
   /**

@@ -1,37 +1,48 @@
 /**
  * FlonCSS グローバル設定
- * 
+ *
  * このファイルは FlonCSS を使用するためのエントリーポイントです。
- * 
- * settings/ と objects/ をカスタマイズ
- * 
- * レスポンシブユーティリティ:
- * 必要なブレークポイントのみコメントを外してください。
- * 使用する場合は、settings/custom-media.css で対応する @custom-media を定義してください。
+ *
+ * ITCSS のレイヤー順序はカスケードレイヤー（@layer）で担保されます。
+ * import の記述順に関係なく、下記の @layer 宣言の順序
+ * （後ろのレイヤーほど強い）が適用されるため、
+ * ユーティリティ（trumps）は常にコンポーネントより優先されます。
+ *
+ * 注意: レイヤーに属さない CSS はすべてのレイヤーより優先されます。
+ * カスタムスタイルを追加する場合は components などのレイヤーに入れてください。
  */
 
-@import url('./settings');
-@import url('./generic');
-@import url('./base');
-@import url('./objects');
-@import url('./components');
+@layer settings, generic, base, objects, components, trumps;
 
-/** FlonCSS コアをインポート */
-@import url('floncss/core');
+@import url('./settings') layer(settings);
+@import url('./generic') layer(generic);
+@import url('./base') layer(base);
+@import url('./objects') layer(objects);
+@import url('./components') layer(components);
+
+/**
+ * FlonCSS コアをインポート
+ * （コアの generic / base は現状プレースホルダーのため、実体は trumps のみ）
+ */
+@import url('floncss/core') layer(trumps);
 
 /**
  * レスポンシブユーティリティ（必要なものだけコメント解除）
  * 使用する場合は、settings/custom-media.css で対応する @custom-media を定義してください。
 */
 
-/* @import url("floncss/trumps/media-sm"); */
+/* @import url("floncss/trumps/media-sm") layer(trumps); */
 
-/* @import url("floncss/trumps/media-md"); */
+/* @import url("floncss/trumps/media-md") layer(trumps); */
 
-/* @import url("floncss/trumps/media-lg"); */
+/* @import url("floncss/trumps/media-lg") layer(trumps); */
 
-/* @import url("floncss/trumps/media-xl"); */
+/* @import url("floncss/trumps/media-xl") layer(trumps); */
 
-/** 5. カスタムスタイル（必要に応じて追加） */
+/**
+ * カスタムスタイル（必要に応じて追加）
+ * ユーティリティより優先させたい場合はレイヤー無しでインポートし、
+ * そうでなければ components レイヤーに入れてください。
+ */
 
-/* @import url("./css/styles.css"); */
+/* @import url("./css/styles.css") layer(components); */
