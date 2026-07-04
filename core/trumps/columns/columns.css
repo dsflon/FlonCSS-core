@@ -1,4 +1,20 @@
+/**
+ * @deprecated Flex ベースの 12 カラムシステム（.cols / cols:N）は非推奨です。
+ * CSS Grid ベースの .grid / grid-cols:N / col-span:N への移行を推奨します。
+ * 将来のメジャーバージョンで削除される可能性があります。
+ */
 .cols {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--column-gap);
+  row-gap: var(--row-gap, var(--column-gap));
+}
+
+/**
+ * デフォルト値は :where() で詳細度 0 にしているため、gap:* ユーティリティが
+ * 読み込み順に関係なく必ず優先される。
+ */
+:where(.cols) {
   /* stylelint-disable-next-line length-zero-no-unit */
   --column-gap: 0px;
   --column-item: calc((100% + var(--column-gap)) / 12);
@@ -14,11 +30,6 @@
   --column-10: calc(var(--column-item) * 10 - var(--column-gap));
   --column-11: calc(var(--column-item) * 11 - var(--column-gap));
   --column-12: calc(var(--column-item) * 12 - var(--column-gap));
-
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: var(--column-gap);
-  row-gap: var(--row-gap, var(--column-gap));
 }
 
 .cols\:flex {

@@ -1,1 +1,7 @@
-/** */
+/**
+ * Generic レイヤー（コア側プレースホルダー）
+ *
+ * リセット CSS の実体はテンプレート側（templates/generic/reset.css）にあり、
+ * `npx floncss init` でプロジェクトにコピーされたものが使用されます。
+ * このファイルは `floncss/generic` のインポート互換性を保つための空レイヤーです。
+ */

@@ -24,17 +24,6 @@
   .line-height\:md$(screen) { line-height: var(--line-height-md); }
   .line-height\:sm$(screen) { line-height: var(--line-height-sm); }
 
-  /* [old] line-height */
-  .lh\:none$(screen) { line-height: 1; }
-  .lh$(screen) { line-height: var(--line-height-base); }
-  .lh\:2xl$(screen) { line-height: var(--line-height-2xl); }
-  .lh\:xl$(screen) { line-height: var(--line-height-xl); }
-  .lh\:lg$(screen) { line-height: var(--line-height-lg); }
-  .lh\:md$(screen) { line-height: var(--line-height-md); }
-  .lh\:sm$(screen) { line-height: var(--line-height-sm); }
-  .lh\:xs$(screen) { line-height: var(--line-height-xs); }
-  .lh\:2xs$(screen) { line-height: var(--line-height-2xs); }
-
   /* white-space */
   .white-space\:normal$(screen) { white-space: normal; }
   .white-space\:nowrap$(screen) { white-space: nowrap; }

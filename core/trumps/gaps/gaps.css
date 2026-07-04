@@ -8,7 +8,9 @@
   .gap\:xs$(screen) { --column-gap: var(--gap-xs); }
   .gap\:2xs$(screen) { --column-gap: var(--gap-2xs); }
   .gap\:3xs$(screen) { --column-gap: var(--gap-3xs); }
-  .gap\:none$(screen) { --column-gap: 0; }
+  /* .cols の calc() 内で参照されるため、単位付きの 0px を指定する */
+  /* stylelint-disable-next-line length-zero-no-unit */
+  .gap\:none$(screen) { --column-gap: 0px; }
 
   .row-gap$(screen) { --row-gap: var(--gap-base); }
   .row-gap\:2xl$(screen) { --row-gap: var(--gap-2xl); }
@@ -19,7 +21,8 @@
   .row-gap\:xs$(screen) { --row-gap: var(--gap-xs); }
   .row-gap\:2xs$(screen) { --row-gap: var(--gap-2xs); }
   .row-gap\:3xs$(screen) { --row-gap: var(--gap-3xs); }
-  .row-gap\:none$(screen) { --row-gap: 0; }
+  /* stylelint-disable-next-line length-zero-no-unit */
+  .row-gap\:none$(screen) { --row-gap: 0px; }
 }
 
 @mixin gap;

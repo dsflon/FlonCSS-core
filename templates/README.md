@@ -16,13 +16,13 @@ FlonCSS は **ITCSS（Inverted Triangle CSS）** アーキテクチャに基づ�
 ### 📁 generic/ - 汎用リセットレイヤー
 
 - **役割**: ブラウザのデフォルトスタイルをリセット
-- **内容**: 基本的なリセットは FlonCSS に組み込み済み、追加が必要な場合に使用
+- **内容**: 基本的なリセット（reset.css）が init 時にコピーされる。自由に編集・追加可能
 - **詳細**: [generic/README.md](./generic/README.md)
 
 ### 📁 base/ - 基本要素レイヤー
 
 - **役割**: HTML 要素のデフォルトスタイルを定義
-- **内容**: 必要最低限の指定は FlonCSS に組み込み済み、追加が必要な場合に使用
+- **内容**: 必要最低限の指定（base.css）が init 時にコピーされる。自由に編集・追加可能
 - **詳細**: [base/README.md](./base/README.md)
 
 ### 📁 objects/ - オブジェクトレイヤー
@@ -67,34 +67,39 @@ npx floncss init ./path/to/floncss
 
 ### 2. global.css の構成
 
-`global.css` には以下がインポートされています:
+`global.css` は ITCSS のレイヤー順序をカスケードレイヤー（`@layer`）で宣言した上で、各レイヤーをインポートします:
 
 ```css
-@import url("./settings");
-@import url("./generic");
-@import url("./base");
-@import url("./objects");
-@import url("./components");
+@layer settings, generic, base, objects, components, trumps;
 
-/* FlonCSSコア（Generic, Base, Trumps） */
-@import url("floncss/core");
+@import url("./settings") layer(settings);
+@import url("./generic") layer(generic);
+@import url("./base") layer(base);
+@import url("./objects") layer(objects);
+@import url("./components") layer(components);
+
+/* FlonCSSコア（Trumps） */
+@import url("floncss/core") layer(trumps);
 
 /* レスポンシブユーティリティ（必要なものを有効化） */
-@import url("floncss/trumps/media-sm");
-@import url("floncss/trumps/media-md");
-@import url("floncss/trumps/media-lg");
-@import url("floncss/trumps/media-xl");
+@import url("floncss/trumps/media-sm") layer(trumps);
+@import url("floncss/trumps/media-md") layer(trumps);
+@import url("floncss/trumps/media-lg") layer(trumps);
+@import url("floncss/trumps/media-xl") layer(trumps);
 ```
+
+`@layer` 宣言の順序（後ろほど強い）が import の記述順に優先するため、ユーティリティが常にコンポーネントに勝つことが保証されます。  
+**注意**: レイヤーに属さない CSS はすべてのレイヤーより優先されます。カスタムスタイルは `components` などのレイヤーに入れてください。
 
 ### 3. レスポンシブユーティリティのカスタマイズ
 
 不要なブレークポイントはコメントアウトできます:
 
 ```css
-/* @import url("floncss/trumps/media-sm"); */
-@import url("floncss/trumps/media-md");
-@import url("floncss/trumps/media-lg");
-/* @import url("floncss/trumps/media-xl"); */
+/* @import url("floncss/trumps/media-sm") layer(trumps); */
+@import url("floncss/trumps/media-md") layer(trumps);
+@import url("floncss/trumps/media-lg") layer(trumps);
+/* @import url("floncss/trumps/media-xl") layer(trumps); */
 ```
 
 ### 4. PostCSS 設定

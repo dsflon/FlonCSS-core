@@ -1,6 +1,6 @@
 {
   "name": "floncss",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "ハイブリッドCSSフレームワーク - 最小限のutility-first CSSとITCSSベースのstyle設計",
   "main": "core/index.css",
   "exports": {
@@ -8,11 +8,14 @@
     "./core": "./core/index.css",
     "./core.css": "./core/index.css",
     "./core/*": "./core/*",
+    "./layers": "./core/layers.css",
     "./generic": "./core/generic/index.css",
     "./base": "./core/base/index.css",
+    "./postcss-features": "./postcss-features.js",
     "./trumps": "./core/trumps/index.css",
     "./trumps/*": "./core/trumps/*",
-    "./templates/*": "./templates/*"
+    "./templates/*": "./templates/*",
+    "./dist/*": "./dist/*"
   },
   "bin": {
     "floncss": "./cli.js"
@@ -20,12 +23,15 @@
   "files": [
     "core/",
     "templates/",
+    "dist/",
+    "scripts/",
     "cli.js",
+    "postcss-features.js",
     "README.md"
   ],
   "scripts": {
-    "build": "echo 'No build needed - source files are distributed directly'",
-    "prepublishOnly": "echo 'Publishing source files'"
+    "build": "node scripts/build-dist.js",
+    "prepare": "npm run build"
   },
   "keywords": [
     "css",
@@ -35,11 +41,15 @@
     "postcss",
     "design-system"
   ],
-  "author": "",
+  "author": "dsflon",
   "license": "MIT",
+  "homepage": "https://floncss.dsflon.net/",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/dsflon/FlonCSS-core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dsflon/FlonCSS-core/issues"
   },
   "peerDependencies": {
     "postcss": "^8.5.8",
@@ -49,6 +59,15 @@
     "postcss-preset-env": "^11.2.0",
     "postcss-import-resolver": "^2.0.0",
     "cssnano": "^7.1.2"
+  },
+  "peerDependenciesMeta": {
+    "postcss": { "optional": true },
+    "postcss-cli": { "optional": true },
+    "postcss-import": { "optional": true },
+    "postcss-mixins": { "optional": true },
+    "postcss-preset-env": { "optional": true },
+    "postcss-import-resolver": { "optional": true },
+    "cssnano": { "optional": true }
   },
   "devDependencies": {
     "postcss": "^8.5.8",

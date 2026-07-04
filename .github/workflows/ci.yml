@@ -1,0 +1,69 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-check:
+    name: init & build スモークテスト
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: プリビルド CSS を生成
+        run: |
+          npm ci
+          npm run build
+          test -s dist/floncss.css
+          test -s dist/floncss.min.css
+          # レイヤー順序の正準定義（core/layers.css）が dist に含まれていること
+          grep -qF "$(grep '^@layer' core/layers.css)" dist/floncss.css
+          # ネイティブ @layer が維持されていること（ポリフィルで潰されていないこと）
+          ! grep -qF ':not(#' dist/floncss.css
+
+      - name: テストプロジェクトを作成して floncss init を実行
+        run: |
+          mkdir -p /tmp/testproj
+          cd /tmp/testproj
+          npm init -y
+          # peerDependencies（optional）を package.json から導出してインストール
+          PEERS=$(node -p "Object.keys(require(process.env.GITHUB_WORKSPACE + '/package.json').peerDependencies).join(' ')")
+          npm install "$GITHUB_WORKSPACE" $PEERS
+          npx floncss init
+          test -f floncss/global.css
+          test -f postcss.config.js
+
+      - name: レスポンシブユーティリティを有効化してビルド
+        run: |
+          cd /tmp/testproj
+          sed -i 's|/\* @import url("floncss/trumps/media-md") layer(trumps); \*/|@import url("floncss/trumps/media-md") layer(trumps);|' floncss/global.css
+          npx postcss floncss/global.css -o dist/global.css
+
+      - name: ビルド出力を検証
+        run: |
+          cd /tmp/testproj
+          test -s dist/global.css
+          # ベースユーティリティが含まれること（セレクタ全体は minifier 依存のため宣言のみ検証）
+          grep -qF 'margin-top:var(--gutter-base)' dist/global.css
+          # レスポンシブバリアントが展開されていること
+          grep -qF '.mt\@md' dist/global.css
+          # @custom-media が実メディアクエリに展開され、未解決の --media-* が残っていないこと
+          grep -qF '(min-width:768px)' dist/global.css
+          ! grep -qE '@media \(--media-' dist/global.css
+          # grid コンテナの変数が定義されていること
+          grep -qF -- '--grid-1:' dist/global.css
+          # カスケードレイヤーが宣言され、settings が先頭・trumps が最後であること
+          grep -qE '@layer settings,.*trumps' dist/global.css
+          # ポリフィルで @layer が潰されていないこと
+          ! grep -qF ':not(#' dist/global.css
+          # 未解決の @mixin / $(screen) が残っていないこと
+          ! grep -q '@mixin' dist/global.css
+          ! grep -qF '$(screen)' dist/global.css
+          echo "✅ ビルド検証 OK"

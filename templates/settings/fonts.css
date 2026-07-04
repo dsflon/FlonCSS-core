@@ -14,7 +14,13 @@
  *   }
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap');
+/**
+ * Web フォントを使用する場合はコメント解除してください。
+ * ※ 外部リクエストはレンダリングブロックやプライバシー（GDPR 等）に
+ *    影響するため、デフォルトでは無効にしています。
+ *    <link rel="preconnect"> と併用するか、フォントのセルフホストを推奨します。
+ */
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap'); */
 
 :root {
   /**

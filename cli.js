@@ -8,6 +8,12 @@ const command = process.argv[2];
 if (command === 'init') {
   const targetDir = process.argv[3] || './floncss';
   const templatesDir = path.join(__dirname, 'templates');
+  // 正規化した相対パス（'./floncss' → 'floncss'）。
+  // 生成する設定ファイルや @import 案内に埋め込むため、Windows でも '/' 区切りに統一する
+  const displayPath = (path.relative(process.cwd(), path.resolve(targetDir)) || '.')
+    .split(path.sep)
+    .join('/');
+  const globalCssPath = displayPath === '.' ? './global.css' : `./${displayPath}/global.css`;
   
   console.log('🎨 FlonCSS を初期化しています...');
   
@@ -20,12 +26,17 @@ if (command === 'init') {
     if (fs.existsSync(postcssConfigDest)) {
       console.log('⚠️  postcss.config.js は既に存在するため、スキップしました。');
       console.log('   必要に応じて手動で設定を統合してください。');
+      console.log('');
+      console.log('   ❗ v3 のテンプレートは @layer（カスケードレイヤー）を使用します。');
+      console.log('      既存の設定の postcss-preset-env に以下が含まれているか確認してください:');
+      console.log('');
+      console.log("      'postcss-preset-env': require('floncss/postcss-features'),");
+      console.log('');
+      console.log('      （個別設定する場合は features に \'cascade-layers\': false が必須です。');
+      console.log('       これがないと @layer が詳細度ハックに変換され、レイヤーが機能しません）');
     } else {
-      // targetDir からの相対パスを計算
-      const relativePath = path.relative(process.cwd(), path.resolve(targetDir));
-      
       // postcss.config.js の内容を生成
-      const postcssConfig = generatePostCSSConfig(relativePath);
+      const postcssConfig = generatePostCSSConfig(displayPath);
       fs.writeFileSync(postcssConfigDest, postcssConfig, 'utf-8');
       postcssConfigCopied = true;
     }
@@ -49,14 +60,16 @@ if (command === 'init') {
     }
     console.log('');
     console.log('次のステップ:');
-    console.log(`1. ${targetDir}/settings/ でデザイントークンをカスタマイズ`);
-    console.log(`2. ${targetDir}/objects/ で再利用可能なUIパーツを作成`);
-    console.log(`3. ${targetDir}/components/ でプロジェクト固有のコンポーネントを作成`);
-    console.log(`4. ${targetDir}/global.css で必要なレスポンシブユーティリティを選択`);
+    console.log('1. PostCSS ツールチェーンをインストール（未導入の場合）:');
+    console.log('   npm install -D postcss postcss-cli postcss-import postcss-mixins postcss-preset-env postcss-import-resolver cssnano');
+    console.log(`2. ${displayPath}/settings/ でデザイントークンをカスタマイズ`);
+    console.log(`3. ${displayPath}/objects/ で再利用可能なUIパーツを作成`);
+    console.log(`4. ${displayPath}/components/ でプロジェクト固有のコンポーネントを作成`);
+    console.log(`5. ${displayPath}/global.css で必要なレスポンシブユーティリティを選択`);
     console.log('');
     console.log('📝 使い方:');
     console.log('');
-    console.log(`  @import './${targetDir}/global.css';`);
+    console.log(`  @import '${globalCssPath}';`);
     console.log('');
     console.log('💡 global.css には FlonCSS コア（Generic, Base, Trumps）が含まれています。');
     console.log('💡 詳細は各ディレクトリの README.md を参照してください。');
@@ -79,14 +92,12 @@ if (command === 'init') {
   console.log('  npx floncss init ./path/to/floncss     - ./path/to/floncss に初期化');
 }
 
-function generatePostCSSConfig(stylesPath) {
-  const srcDir = stylesPath || 'floncss';
-
+function generatePostCSSConfig(srcDir) {
   return `/**
  * PostCSS Configuration for FlonCSS
- * 
+ *
  * このファイルは FlonCSS を使用するための PostCSS 設定です。
- * 
+ *
  * 必要なプラグイン:
  * - postcss-import: @import を解決
  * - postcss-mixins: CSS mixins を使用可能に
@@ -107,18 +118,12 @@ module.exports = {
       }),
     },
     'postcss-mixins': {},
-    'postcss-preset-env': {
-      features: {
-        // custom-media-queries は展開（必要なら）
-        'custom-media-queries': {
-          preserve: false,
-        },
-        // カスタムプロパティの変換を無効化することで、フォールバック値の生成を防ぐ
-        'custom-properties': false,
-        'nesting-rules': false,
-      },
-      preserve: false,
-    },
+    /**
+     * preset-env の設定は FlonCSS が提供する共通設定を使用します。
+     * （custom-properties / nesting-rules / cascade-layers を変換しない等。
+     *   個別に設定する場合も 'cascade-layers': false は必須です）
+     */
+    'postcss-preset-env': require('floncss/postcss-features'),
     'cssnano': {
       preset: ['default', {
         discardComments: {

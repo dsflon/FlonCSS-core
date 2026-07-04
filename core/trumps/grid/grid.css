@@ -1,25 +1,37 @@
-.grid {
-  /* stylelint-disable-next-line length-zero-no-unit */
-  --column-gap: 0px;
-  --grid-1: repeat(1, minmax(0, 1fr));
-  --grid-2: repeat(2, minmax(0, 1fr));
-  --grid-3: repeat(3, minmax(0, 1fr));
-  --grid-4: repeat(4, minmax(0, 1fr));
-  --grid-5: repeat(5, minmax(0, 1fr));
-  --grid-6: repeat(6, minmax(0, 1fr));
-  --grid-7: repeat(7, minmax(0, 1fr));
-  --grid-8: repeat(8, minmax(0, 1fr));
-  --grid-9: repeat(9, minmax(0, 1fr));
-  --grid-10: repeat(10, minmax(0, 1fr));
-  --grid-11: repeat(11, minmax(0, 1fr));
-  --grid-12: repeat(12, minmax(0, 1fr));
-
-  display: grid;
-  column-gap: var(--column-gap);
-  row-gap: var(--row-gap, var(--column-gap));
-}
-
+/**
+ * grid コンテナの共通設定
+ *
+ * - display の指定は displays/displays.css が行うため、ここでは含めない
+ * - コンテナのデフォルト変数は :where() で詳細度 0 にしているため、
+ *   gap:* / row-gap:* ユーティリティ（詳細度 0,1,0）が
+ *   読み込み順・ブレークポイントの組み合わせに関係なく必ず優先される
+ * - mixin 内に定義することで、レスポンシブ変形（.grid@md など）も
+ *   各 media ファイルの @mixin grid 呼び出しから自動生成される
+ */
 @define-mixin grid $screen {
+  .grid$(screen),
+  .inline-grid$(screen) {
+    column-gap: var(--column-gap);
+    row-gap: var(--row-gap, var(--column-gap));
+  }
+
+  :where(.grid$(screen), .inline-grid$(screen)) {
+    /* stylelint-disable-next-line length-zero-no-unit */
+    --column-gap: 0px;
+    --grid-1: repeat(1, minmax(0, 1fr));
+    --grid-2: repeat(2, minmax(0, 1fr));
+    --grid-3: repeat(3, minmax(0, 1fr));
+    --grid-4: repeat(4, minmax(0, 1fr));
+    --grid-5: repeat(5, minmax(0, 1fr));
+    --grid-6: repeat(6, minmax(0, 1fr));
+    --grid-7: repeat(7, minmax(0, 1fr));
+    --grid-8: repeat(8, minmax(0, 1fr));
+    --grid-9: repeat(9, minmax(0, 1fr));
+    --grid-10: repeat(10, minmax(0, 1fr));
+    --grid-11: repeat(11, minmax(0, 1fr));
+    --grid-12: repeat(12, minmax(0, 1fr));
+  }
+
   .grid-flow\:row$(screen) { grid-auto-flow: row; }
   .grid-flow\:col$(screen) { grid-auto-flow: column; }
   .grid-flow\:dense$(screen) { grid-auto-flow: dense; }

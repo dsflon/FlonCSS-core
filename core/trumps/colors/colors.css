@@ -49,7 +49,7 @@
 
   /** other colors */
   .color\:red$(screen) { color: var(--color-red); }
-  .color\:red-light$(screen) { color: var(--color-red); }
+  .color\:red-light$(screen) { color: var(--color-red-light); }
   .color\:red-dark$(screen) { color: var(--color-red-dark); }
   .color\:green$(screen) { color: var(--color-green); }
   .color\:green-light$(screen) { color: var(--color-green-light); }
@@ -58,7 +58,7 @@
   .color\:blue-light$(screen) { color: var(--color-blue-light); }
   .color\:blue-dark$(screen) { color: var(--color-blue-dark); }
   .bg-color\:red$(screen) { background-color: var(--color-red); }
-  .bg-color\:red-light$(screen) { background-color: var(--color-red); }
+  .bg-color\:red-light$(screen) { background-color: var(--color-red-light); }
   .bg-color\:red-dark$(screen) { background-color: var(--color-red-dark); }
   .bg-color\:green$(screen) { background-color: var(--color-green); }
   .bg-color\:green-light$(screen) { background-color: var(--color-green-light); }

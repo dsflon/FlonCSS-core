@@ -32,7 +32,7 @@
   .border\:left.border-width\:md$(screen) { border-left-width: var(--border-width-md); }
   .border\:left.border-width\:sm$(screen) { border-left-width: var(--border-width-sm); }
 
-  /** border width */
+  /** border style */
   .border-style\:solid$(screen) { border-style: solid; }
   .border-style\:dotted$(screen) { border-style: dotted; }
   .border-style\:dashed$(screen) { border-style: dashed; }
@@ -65,7 +65,7 @@
 
   /** other colors */
   .border-color\:red$(screen) { border-color: var(--color-red); }
-  .border-color\:red-light$(screen) { border-color: var(--color-red); }
+  .border-color\:red-light$(screen) { border-color: var(--color-red-light); }
   .border-color\:red-dark$(screen) { border-color: var(--color-red-dark); }
   .border-color\:green$(screen) { border-color: var(--color-green); }
   .border-color\:green-light$(screen) { border-color: var(--color-green-light); }

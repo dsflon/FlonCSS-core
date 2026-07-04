@@ -12,21 +12,28 @@
   .hidden$(screen) { display: none; }
   .visible$(screen) { display: unset; }
 
+  /**
+   * flex / inline-flex の gap はオプトイン（gap:* / row-gap:* で指定）。
+   * デフォルトは 0 で、grid / cols と同じ挙動に統一している。
+   * row-gap 未指定時は column-gap にフォールバックする（gap ショートハンドと同じ感覚）。
+   * デフォルト値は :where() で詳細度 0 にしているため、gap:* ユーティリティが
+   * 読み込み順・ブレークポイントの組み合わせに関係なく必ず優先される。
+   */
   .flex$(screen),
   .inline-flex$(screen) {
-    --column-gap: var(--gap-base);
-    --row-gap-base: 0;
-
     column-gap: var(--column-gap);
-    row-gap: var(--row-gap, var(--row-gap-base));
+    row-gap: var(--row-gap, var(--column-gap));
   }
 
-  .grid$(screen),
-  .inline-grid$(screen) {
-    --grid-gap: var(--gap-base);
-
-    gap: var(--grid-gap);
+  :where(.flex$(screen), .inline-flex$(screen)) {
+    /* stylelint-disable-next-line length-zero-no-unit */
+    --column-gap: 0px;
   }
+
+  /**
+   * grid / inline-grid の gap は grid/grid.css で
+   * --column-gap / --row-gap を介して一元管理する
+   */
 
   /** align-items */
   .items\:inherit$(screen) { align-items: inherit; }
