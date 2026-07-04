@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-check:
+    name: init & build スモークテスト
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: テストプロジェクトを作成して floncss init を実行
+        run: |
+          mkdir -p /tmp/testproj
+          cd /tmp/testproj
+          npm init -y
+          npm install "$GITHUB_WORKSPACE" postcss postcss-cli postcss-import postcss-mixins postcss-preset-env postcss-import-resolver cssnano
+          npx floncss init
+          test -f floncss/global.css
+          test -f postcss.config.js
+
+      - name: レスポンシブユーティリティを有効化してビルド
+        run: |
+          cd /tmp/testproj
+          sed -i 's|/\* @import url("floncss/trumps/media-md"); \*/|@import url("floncss/trumps/media-md");|' floncss/global.css
+          npx postcss floncss/global.css -o dist/global.css
+
+      - name: ビルド出力を検証
+        run: |
+          cd /tmp/testproj
+          test -s dist/global.css
+          # ベースユーティリティが含まれること
+          grep -qF '.mt{margin-top:var(--gutter-base)}' dist/global.css
+          # レスポンシブバリアントが展開されていること
+          grep -qF '.mt\@md{margin-top:var(--gutter-base)}' dist/global.css
+          # @custom-media が実メディアクエリに展開されていること
+          grep -qF '@media only screen and (min-width:768px)' dist/global.css
+          # grid コンテナの変数が定義されていること
+          grep -qF -- '--grid-1:repeat(1,minmax(0,1fr))' dist/global.css
+          # 未解決の @mixin / $(screen) が残っていないこと
+          ! grep -q '@mixin' dist/global.css
+          ! grep -qF '$(screen)' dist/global.css
+          echo "✅ ビルド検証 OK"

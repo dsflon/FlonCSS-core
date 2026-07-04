@@ -73,12 +73,14 @@ FlonCSS は**ITCSS（Inverted Triangle CSS）**に基づいて設計されてい
 
 ### レイヤー構造（詳細度: 低 → 高）
 
-1. **Settings** - CSS 変数、デザイントークン
-2. **Generic** - ブラウザリセット（FlonCSS コアに含む）
-3. **Base** - HTML 要素のデフォルトスタイル（FlonCSS コアに含む）
+1. **Settings** - CSS 変数、デザイントークン（テンプレートとして提供・カスタマイズ可能）
+2. **Generic** - ブラウザリセット（テンプレートとして提供・カスタマイズ可能）
+3. **Base** - HTML 要素のデフォルトスタイル（テンプレートとして提供・カスタマイズ可能）
 4. **Objects** - 再利用可能な UI パーツ（カスタマイズ可能）
 5. **Components** - プロジェクト固有のコンポーネント（カスタマイズ可能）
 6. **Trumps** - ユーティリティクラス（FlonCSS コアに含む）
+
+※ Generic / Base のスタイルは `npx floncss init` でプロジェクト側にコピーされるため、自由に編集できます。FlonCSS コア側の generic / base レイヤーは現状プレースホルダーです。
 
 詳細は [templates/README.md](./templates/README.md) を参照してください。
 
@@ -170,6 +172,7 @@ FlonCSS コアには以下のユーティリティクラスが含まれていま
 ### Display & Layout
 
 - **Display**: `block`, `inline-block`, `inline`, `flex`, `inline-flex`, `table`, `inline-table`, `grid`, `inline-grid`, `contents`, `hidden`, `visible`
+  - ※ デフォルトの gap: `.flex` / `.inline-flex` には `column-gap: var(--gap-base)` が初期適用されます。`.grid` / `.inline-grid` / `.cols` の初期 gap は `0` です。いずれも `gap:*` / `row-gap:*` ユーティリティで変更でき、`gap:none` で解除できます。
 - **Flexbox**:
   - **Align Items**: `items:inherit`, `items:normal`, `items:stretch`, `items:center`, `items:start`, `items:end`, `items:flex-start`, `items:flex-end`
   - **Align Self**: `self:inherit`, `self:baseline`, `self:auto`, `self:center`, `self:flex-start`, `self:flex-end`
@@ -203,7 +206,6 @@ FlonCSS コアには以下のユーティリティクラスが含まれていま
 - **Text Align**: `text:left`, `text:center`, `text:right`, `text:justify`
 - **Vertical Align**: `align:inherit`, `align:baseline`, `align:sub`, `align:super`, `align:text-top`, `align:text-bottom`, `align:top`, `align:middle`, `align:bottom`
 - **Line Height**: `line-height`, `line-height:xl`, `line-height:lg`, `line-height:md`, `line-height:sm`, `line-height:none`
-  - レガシー版: `lh`, `lh:2xl`, `lh:xl`, `lh:lg`, `lh:md`, `lh:sm`, `lh:xs`, `lh:2xs`, `lh:none`
 - **White Space**: `white-space:normal`, `white-space:nowrap`, `white-space:pre`, `white-space:pre-line`, `white-space:break-spaces`
 - **Letter Spacing**: `letter-spacing`, `letter-spacing:xl`, `letter-spacing:lg`, `letter-spacing:md`, `letter-spacing:sm`, `letter-spacing:none`
 

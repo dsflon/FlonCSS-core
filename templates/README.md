@@ -16,13 +16,13 @@ FlonCSS は **ITCSS（Inverted Triangle CSS）** アーキテクチャに基づ�
 ### 📁 generic/ - 汎用リセットレイヤー
 
 - **役割**: ブラウザのデフォルトスタイルをリセット
-- **内容**: 基本的なリセットは FlonCSS に組み込み済み、追加が必要な場合に使用
+- **内容**: 基本的なリセット（reset.css）が init 時にコピーされる。自由に編集・追加可能
 - **詳細**: [generic/README.md](./generic/README.md)
 
 ### 📁 base/ - 基本要素レイヤー
 
 - **役割**: HTML 要素のデフォルトスタイルを定義
-- **内容**: 必要最低限の指定は FlonCSS に組み込み済み、追加が必要な場合に使用
+- **内容**: 必要最低限の指定（base.css）が init 時にコピーされる。自由に編集・追加可能
 - **詳細**: [base/README.md](./base/README.md)
 
 ### 📁 objects/ - オブジェクトレイヤー
