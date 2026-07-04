@@ -6,7 +6,8 @@
  * カスタマイズしたい場合は `npx floncss init` による通常のワークフローを使用してください。
  */
 
-@layer settings, generic, base, trumps;
+/* レイヤー順序の正準定義（objects / components を含む全レイヤー）を最初に取り込む */
+@import url('../core/layers.css');
 
 @import url('../templates/settings/index.css') layer(settings);
 @import url('../templates/generic/index.css') layer(generic);

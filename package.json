@@ -8,13 +8,13 @@
     "./core": "./core/index.css",
     "./core.css": "./core/index.css",
     "./core/*": "./core/*",
+    "./layers": "./core/layers.css",
     "./generic": "./core/generic/index.css",
     "./base": "./core/base/index.css",
+    "./postcss-features": "./postcss-features.js",
     "./trumps": "./core/trumps/index.css",
     "./trumps/*": "./core/trumps/*",
     "./templates/*": "./templates/*",
-    "./floncss.css": "./dist/floncss.css",
-    "./floncss.min.css": "./dist/floncss.min.css",
     "./dist/*": "./dist/*"
   },
   "bin": {
@@ -24,12 +24,14 @@
     "core/",
     "templates/",
     "dist/",
+    "scripts/",
     "cli.js",
+    "postcss-features.js",
     "README.md"
   ],
   "scripts": {
     "build": "node scripts/build-dist.js",
-    "prepublishOnly": "npm run build"
+    "prepare": "npm run build"
   },
   "keywords": [
     "css",

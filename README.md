@@ -46,14 +46,41 @@ npm install floncss
 カスタマイズせずにまず試したい場合は、デフォルト設定を焼き込んだプリビルド CSS を読み込むだけで使えます:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/floncss/dist/floncss.min.css">
+<link rel="stylesheet" href="https://unpkg.com/floncss@3/dist/floncss.min.css">
 ```
 
-※ プリビルド版は全ブレークポイントのユーティリティとテンプレートのデフォルトトークンを含みます。デザイントークンのカスタマイズやビルドサイズの最適化を行う場合は、次のテンプレートワークフローを使用してください。
+プリビルド版でも**デザイントークン（CSS 変数）は後から自由に上書きできます**。すべてのユーティリティが `var()` 参照のまま出力されており、変数定義は `@layer settings` 内にあるため、レイヤー外で宣言するあなたの CSS が必ず優先されます:
+
+```css
+/* あなたのサイトの CSS（floncss.min.css の後でも前でも可） */
+:root {
+  --color-primary: #e91e63;
+  --gutter-lg: 48px;
+  --font-family-primary: 'Inter', sans-serif;
+}
+```
+
+プリビルド版の制約は以下の 2 点だけです:
+
+- **ブレークポイント（640 / 768 / 1024 / 1280px）は変更不可** — メディアクエリは CSS 変数を参照できないため、ビルド時に焼き込まれています。ブレークポイントを変えたい場合はテンプレートワークフローを使用してください
+- **レイヤーに属さない CSS はユーティリティより優先されます** — 自作スタイルをユーティリティで上書きしたい場合は、自作スタイルを `@layer components { ... }` などに入れてください
+
+デザイントークンのカスタマイズを設定ファイルとして管理したい場合や、使用するブレークポイント・ユーティリティを絞ってビルドサイズを最適化したい場合は、次のテンプレートワークフローを使用してください。
 
 ## クイックスタート
 
-### 1. テンプレートを初期化
+### 1. PostCSS ツールチェーンをインストール
+
+テンプレートワークフロー（カスタマイズしてビルドする使い方）には PostCSS が必要です。
+v3 から peerDependencies は自動インストールされないため、明示的にインストールしてください:
+
+```bash
+npm install -D postcss postcss-cli postcss-import postcss-mixins postcss-preset-env postcss-import-resolver cssnano
+```
+
+※ プリビルド CSS（`<link>` で読み込む使い方）だけならこの手順は不要です。
+
+### 2. テンプレートを初期化
 
 ```bash
 # プロジェクト直下に 'floncss' ディレクトリを構成
@@ -68,7 +95,7 @@ npx floncss init ./path/to/floncss
 - `./floncss/` - カスタマイズ可能なテンプレート（settings, objects, components など）
 - `./postcss.config.js` - PostCSS 設定（プロジェクト直下）
 
-### 2. ビルド
+### 3. ビルド
 
 ```bash
 npx postcss path/to/global.css -o dist/global.css
@@ -342,10 +369,13 @@ FlonCSS コアには以下のユーティリティクラスが含まれていま
 v2 からアップグレードする場合は以下に注意してください:
 
 - **`.flex` / `.inline-flex` のデフォルト gap を廃止** — v2 では `column-gap: var(--gap-base)` が暗黙に適用されていましたが、v3 では他のコンテナと同じく `0` になりました。従来の見た目を維持するには flex コンテナに `gap` クラスを追加してください。また、`row-gap` 未指定時のフォールバックが `0` から `gap:*` の値に変わりました
+- **レスポンシブ grid 変形（`grid@md` など）の暗黙デフォルト gap も廃止** — v2 では `gap: var(--gap-base)` が適用されていましたが、v3 では `0` になりました。`gap:*` クラスで明示してください
+- **peerDependencies が自動インストールされなくなりました** — PostCSS ツールチェーンは optional 扱いです。テンプレートワークフローを使う場合は明示的にインストールしてください（クイックスタート参照）。プリビルド CSS だけ使う場合は不要です
 - **レガシー `lh:*` クラスを削除** — `line-height:*` に移行してください
-- **テンプレートの `global.css` が `@layer` ベースに** — 既存プロジェクトのテンプレートには影響しませんが、新規 init から適用されます。レイヤーに属さないカスタム CSS はユーティリティより優先される点に注意してください
+- **テンプレートの `global.css` が `@layer` ベースに** — 既存プロジェクトのテンプレートには影響しませんが、新規 init から適用されます。レイヤーに属さないカスタム CSS はユーティリティより優先される点に注意してください。既存プロジェクトで再 init する場合は、postcss.config.js の preset-env 設定を `require('floncss/postcss-features')` に更新してください（`'cascade-layers': false` が必須）
 - **`.cols`（Flex ベース 12 カラム）を非推奨化** — 動作は維持されますが、CSS Grid ユーティリティへの移行を推奨します
 - **テンプレートの Google Fonts `@import` をデフォルト無効化** — Web フォントが必要な場合は `settings/fonts.css` でコメント解除してください
+- **`floncss/trumps/*` 配下の個別ファイル単体でのインポートは動作を保証しません** — trumps 内のファイルは相互に連携して動作します（例: grid の gap 処理）。サポートされるエントリーポイントは `floncss/core` / `floncss/trumps` / `floncss/trumps/media-*` です
 
 ## ドキュメント
 

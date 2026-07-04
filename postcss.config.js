@@ -14,16 +14,7 @@ module.exports = {
       }),
     },
     'postcss-mixins': {},
-    'postcss-preset-env': {
-      features: {
-        'custom-properties': false,
-        'custom-media-queries': {
-          preserve: false,
-        },
-        'nesting-rules': false,
-        'cascade-layers': false,
-      },
-      preserve: false,
-    },
+    // preset-env の設定は postcss-features.js で一元管理
+    'postcss-preset-env': require('./postcss-features'),
   },
 };

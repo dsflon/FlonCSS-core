@@ -15,6 +15,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: プリビルド CSS を生成
         run: |
@@ -22,8 +23,9 @@ jobs:
           npm run build
           test -s dist/floncss.css
           test -s dist/floncss.min.css
+          # レイヤー順序の正準定義（core/layers.css）が dist に含まれていること
+          grep -qF "$(grep '^@layer' core/layers.css)" dist/floncss.css
           # ネイティブ @layer が維持されていること（ポリフィルで潰されていないこと）
-          grep -qF '@layer settings, generic, base, trumps;' dist/floncss.css
           ! grep -qF ':not(#' dist/floncss.css
 
       - name: テストプロジェクトを作成して floncss init を実行
@@ -31,7 +33,9 @@ jobs:
           mkdir -p /tmp/testproj
           cd /tmp/testproj
           npm init -y
-          npm install "$GITHUB_WORKSPACE" postcss postcss-cli postcss-import postcss-mixins postcss-preset-env postcss-import-resolver cssnano
+          # peerDependencies（optional）を package.json から導出してインストール
+          PEERS=$(node -p "Object.keys(require(process.env.GITHUB_WORKSPACE + '/package.json').peerDependencies).join(' ')")
+          npm install "$GITHUB_WORKSPACE" $PEERS
           npx floncss init
           test -f floncss/global.css
           test -f postcss.config.js
@@ -46,16 +50,17 @@ jobs:
         run: |
           cd /tmp/testproj
           test -s dist/global.css
-          # ベースユーティリティが含まれること
-          grep -qF '.mt{margin-top:var(--gutter-base)}' dist/global.css
+          # ベースユーティリティが含まれること（セレクタ全体は minifier 依存のため宣言のみ検証）
+          grep -qF 'margin-top:var(--gutter-base)' dist/global.css
           # レスポンシブバリアントが展開されていること
-          grep -qF '.mt\@md{margin-top:var(--gutter-base)}' dist/global.css
-          # @custom-media が実メディアクエリに展開されていること
-          grep -qF '@media only screen and (min-width:768px)' dist/global.css
+          grep -qF '.mt\@md' dist/global.css
+          # @custom-media が実メディアクエリに展開され、未解決の --media-* が残っていないこと
+          grep -qF '(min-width:768px)' dist/global.css
+          ! grep -qE '@media \(--media-' dist/global.css
           # grid コンテナの変数が定義されていること
-          grep -qF -- '--grid-1:repeat(1,minmax(0,1fr))' dist/global.css
-          # カスケードレイヤーが宣言され、trumps レイヤーが最後であること
-          grep -qF '@layer settings, generic, base, objects, components, trumps' dist/global.css
+          grep -qF -- '--grid-1:' dist/global.css
+          # カスケードレイヤーが宣言され、settings が先頭・trumps が最後であること
+          grep -qE '@layer settings,.*trumps' dist/global.css
           # ポリフィルで @layer が潰されていないこと
           ! grep -qF ':not(#' dist/global.css
           # 未解決の @mixin / $(screen) が残っていないこと

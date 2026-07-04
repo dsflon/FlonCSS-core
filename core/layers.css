@@ -1,0 +1,12 @@
+/**
+ * FlonCSS カスケードレイヤー順序の正準定義（単一の情報源）
+ *
+ * ITCSS のレイヤー順序（後ろのレイヤーほど強い）をここで一元管理します。
+ * templates/global.css とプリビルド CSS（scripts/dist-entry.css）の両方が
+ * このファイルを最初にインポートすることで、レイヤー順序のドリフトを防ぎます。
+ *
+ * 注意: プリビルド CSS では objects / components レイヤーは空ですが、
+ * 利用者が `@layer components { ... }` にカスタム CSS を書いたときに
+ * trumps（ユーティリティ）より弱い正しい位置に入るよう、必ず全レイヤーを宣言します。
+ */
+@layer settings, generic, base, objects, components, trumps;

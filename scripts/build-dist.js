@@ -19,19 +19,28 @@ const root = path.join(__dirname, '..');
 const entry = path.join(__dirname, 'dist-entry.css');
 const outDir = path.join(root, 'dist');
 
+/**
+ * インポート単位で生成される空の @layer ブロック（コメントのみのファイル等）を除去する。
+ * レイヤー順序は core/layers.css の @layer 文で確定しているため、削除しても安全。
+ * `@layer a, b;` 形式の順序宣言文（nodes を持たない）は対象外。
+ */
+const stripEmptyLayers = {
+  postcssPlugin: 'strip-empty-layers',
+  OnceExit(root) {
+    root.walkAtRules('layer', (atRule) => {
+      if (atRule.nodes && atRule.nodes.every((n) => n.type === 'comment')) {
+        atRule.remove();
+      }
+    });
+  },
+};
+
 const plugins = [
   atImport(),
   mixins(),
-  presetEnv({
-    features: {
-      'custom-properties': false,
-      'custom-media-queries': { preserve: false },
-      'nesting-rules': false,
-      // @layer はネイティブサポートされているため、ポリフィル（詳細度ハックへの変換）を無効化
-      'cascade-layers': false,
-    },
-    preserve: false,
-  }),
+  // preset-env の設定は postcss-features.js で一元管理
+  presetEnv(require('../postcss-features')),
+  stripEmptyLayers,
 ];
 
 async function build() {

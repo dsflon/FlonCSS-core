@@ -12,7 +12,11 @@
  * カスタムスタイルを追加する場合は components などのレイヤーに入れてください。
  */
 
-@layer settings, generic, base, objects, components, trumps;
+/**
+ * レイヤー順序の正準定義を最初に取り込む
+ * = @layer settings, generic, base, objects, components, trumps;
+ */
+@import url('floncss/core/layers.css');
 
 @import url('./settings') layer(settings);
 @import url('./generic') layer(generic);
