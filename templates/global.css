@@ -17,7 +17,6 @@
  * = @layer settings, generic, base, objects, components, trumps;
  */
 @import url('floncss/core/layers.css');
-
 @import url('./settings') layer(settings);
 @import url('./generic') layer(generic);
 @import url('./base') layer(base);
