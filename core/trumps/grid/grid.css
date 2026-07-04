@@ -1,4 +1,19 @@
-.grid {
+/**
+ * grid コンテナの共通設定
+ * display の指定は displays/displays.css で行うため、ここでは含めない。
+ * レスポンシブ変形（.grid@md など）でも --grid-* 変数と gap が
+ * 利用できるよう、全バリアントを列挙する。
+ */
+.grid,
+.inline-grid,
+.grid\@sm,
+.inline-grid\@sm,
+.grid\@md,
+.inline-grid\@md,
+.grid\@lg,
+.inline-grid\@lg,
+.grid\@xl,
+.inline-grid\@xl {
   /* stylelint-disable-next-line length-zero-no-unit */
   --column-gap: 0px;
   --grid-1: repeat(1, minmax(0, 1fr));
@@ -14,7 +29,6 @@
   --grid-11: repeat(11, minmax(0, 1fr));
   --grid-12: repeat(12, minmax(0, 1fr));
 
-  display: grid;
   column-gap: var(--column-gap);
   row-gap: var(--row-gap, var(--column-gap));
 }

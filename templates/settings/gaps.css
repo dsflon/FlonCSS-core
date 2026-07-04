@@ -20,6 +20,7 @@
   --gap-sm: 32px;
   --gap-xs: 24px;
   --gap-2xs: 16px;
+  --gap-3xs: 8px;
 
   /*
    * ex) --media-md gaps
@@ -35,5 +36,6 @@
     --gap-sm: 32px;
     --gap-xs: 24px;
     --gap-2xs: 16px;
+    --gap-3xs: 8px;
   } */
 }

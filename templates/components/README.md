@@ -51,7 +51,7 @@ header や footer など抽象度が低いコンポーネントが該当しま�
 }
 
 .c-header_inner {
-  display; flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--gap-base);

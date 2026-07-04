@@ -21,12 +21,10 @@
     row-gap: var(--row-gap, var(--row-gap-base));
   }
 
-  .grid$(screen),
-  .inline-grid$(screen) {
-    --grid-gap: var(--gap-base);
-
-    gap: var(--grid-gap);
-  }
+  /**
+   * grid / inline-grid の gap は grid/grid.css で
+   * --column-gap / --row-gap を介して一元管理する
+   */
 
   /** align-items */
   .items\:inherit$(screen) { align-items: inherit; }

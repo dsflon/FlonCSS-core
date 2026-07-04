@@ -8,6 +8,8 @@ const command = process.argv[2];
 if (command === 'init') {
   const targetDir = process.argv[3] || './floncss';
   const templatesDir = path.join(__dirname, 'templates');
+  // 表示用に正規化した相対パス（'./floncss' → 'floncss'）
+  const displayPath = path.relative(process.cwd(), path.resolve(targetDir)) || '.';
   
   console.log('🎨 FlonCSS を初期化しています...');
   
@@ -21,11 +23,8 @@ if (command === 'init') {
       console.log('⚠️  postcss.config.js は既に存在するため、スキップしました。');
       console.log('   必要に応じて手動で設定を統合してください。');
     } else {
-      // targetDir からの相対パスを計算
-      const relativePath = path.relative(process.cwd(), path.resolve(targetDir));
-      
       // postcss.config.js の内容を生成
-      const postcssConfig = generatePostCSSConfig(relativePath);
+      const postcssConfig = generatePostCSSConfig(displayPath);
       fs.writeFileSync(postcssConfigDest, postcssConfig, 'utf-8');
       postcssConfigCopied = true;
     }
@@ -56,7 +55,7 @@ if (command === 'init') {
     console.log('');
     console.log('📝 使い方:');
     console.log('');
-    console.log(`  @import './${targetDir}/global.css';`);
+    console.log(`  @import './${displayPath}/global.css';`);
     console.log('');
     console.log('💡 global.css には FlonCSS コア（Generic, Base, Trumps）が含まれています。');
     console.log('💡 詳細は各ディレクトリの README.md を参照してください。');

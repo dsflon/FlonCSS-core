@@ -35,11 +35,15 @@
     "postcss",
     "design-system"
   ],
-  "author": "",
+  "author": "dsflon",
   "license": "MIT",
+  "homepage": "https://floncss.dsflon.net/",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/dsflon/FlonCSS-core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dsflon/FlonCSS-core/issues"
   },
   "peerDependencies": {
     "postcss": "^8.5.8",

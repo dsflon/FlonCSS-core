@@ -26,10 +26,10 @@ npm install floncss
 ### 1. テンプレートを初期化
 
 ```bash
-// プロジェクト直下に 'floncss' ディレクトリを構成
+# プロジェクト直下に 'floncss' ディレクトリを構成
 npx floncss init
 
-// ディレクトリを指定して構成する場合
+# ディレクトリを指定して構成する場合
 npx floncss init ./path/to/floncss
 ```
 
@@ -38,7 +38,7 @@ npx floncss init ./path/to/floncss
 - `./floncss/` - カスタマイズ可能なテンプレート（settings, objects, components など）
 - `./postcss.config.js` - PostCSS 設定（プロジェクト直下）
 
-### 4. ビルド
+### 2. ビルド
 
 ```bash
 npx postcss path/to/global.css -o dist/global.css
@@ -98,10 +98,10 @@ FlonCSS は**ITCSS（Inverted Triangle CSS）**に基づいて設計されてい
 
 ```css
 /* path/to/settings/custom-media.css */
-@custom-media --media-sm (min-width: 576px);
-@custom-media --media-md (min-width: 768px);
-@custom-media --media-lg (min-width: 992px);
-@custom-media --media-xl (min-width: 1200px);
+@custom-media --media-sm only screen and (min-width: 640px);
+@custom-media --media-md only screen and (min-width: 768px);
+@custom-media --media-lg only screen and (min-width: 1024px);
+@custom-media --media-xl only screen and (min-width: 1280px);
 ```
 
 ### オブジェクトの作成
@@ -178,14 +178,16 @@ FlonCSS コアには以下のユーティリティクラスが含まれていま
   - **Flex Wrap**: `flex-wrap`, `flex-wrap-reverse`, `flex-wrap-nowrap`
   - **Flex Direction**: `direction:column`, `direction:column-reverse`, `direction:row`, `direction:row-reverse`
   - **Flex Shrink**: `shrink:1`, `shrink:0`
+  - **Flex Grow**: `grow:1`, `grow:0`
+  - **Align Content**: `content:center`, `content:start`, `content:end`, `content:between`, `content:around`, `content:evenly`, `content:stretch` など
   - **Flex**: `flex:1`, `flex:auto`, `flex:initial`, `flex:none`
   - **Order**: `order:1`～`order:12`, `order:first`, `order:last`, `order:none`
 - **Grid**:
   - **Grid Flow**: `grid-flow:row`, `grid-flow:col`, `grid-flow:dense`, `grid-flow:row-dense`, `grid-flow:col-dense`
   - **Grid Columns**: `grid-cols:1`～`grid-cols:12`, `grid-cols:none`, `grid-cols:subgrid`
   - **Grid Rows**: `grid-rows:1`～`grid-rows:12`, `grid-rows:none`, `grid-rows:subgrid`
-  - **Col Span**: `col-span:auto`, `col-span:1`～`col-span:11`
-  - **Row Span**: `row-span:auto`, `row-span:1`～`row-span:11`
+  - **Col Span**: `col-span:auto`, `col-span:1`～`col-span:12`, `col-span:full`
+  - **Row Span**: `row-span:auto`, `row-span:1`～`row-span:12`, `row-span:full`
 
 ### Spacing
 
@@ -231,21 +233,32 @@ FlonCSS コアには以下のユーティリティクラスが含まれていま
 - **Columns**: `.cols` クラス内で `cols:1`～`cols:12`, `cols:flex` を使用
   - 12 カラムの Flex ベースグリッドシステム
 
+### Sizes
+
+- **Width**: `width:auto`, `width:full`, `width:screen`, `width:min`, `width:max`, `width:fit`
+- **Min Width**: `min-width:0`, `min-width:full`, `min-width:min`, `min-width:max`, `min-width:fit`
+- **Max Width**: `max-width:none`, `max-width:full`, `max-width:min`, `max-width:max`, `max-width:fit`
+- **Height**: `height:auto`, `height:full`, `height:screen`, `height:screen-dvh`, `height:screen-lvh`, `height:screen-svh`, `height:min`, `height:max`, `height:fit`
+- **Min Height**: `min-height:0`, `min-height:full`, `min-height:screen`（`-dvh` / `-lvh` / `-svh` あり）, `min-height:min`, `min-height:max`, `min-height:fit`
+- **Max Height**: `max-height:none`, `max-height:full`, `max-height:screen`（`-dvh` / `-lvh` / `-svh` あり）, `max-height:min`, `max-height:max`, `max-height:fit`
+
 ### Fonts
 
 - **Font Family**: `font:primary`, `font:secondary`
 - **Font Size**: `font:base`, `font:2xl`, `font:xl`, `font:lg`, `font:md`, `font:sm`, `font:xs`, `font:2xs`
 - **Font Weight**: `font:300`, `font:normal`, `font:500`, `font:600`, `font:bold`, `font:900`
-- **Font Style**: `font:itaric`
+- **Font Style**: `font:italic`
 
 ### レスポンシブバリアント
 
 すべてのユーティリティクラスに以下のレスポンシブ接尾辞を付けることができます:
 
-- `@sm` - 576px 以上
+- `@sm` - 640px 以上
 - `@md` - 768px 以上
-- `@lg` - 992px 以上
-- `@xl` - 1200px 以上
+- `@lg` - 1024px 以上
+- `@xl` - 1280px 以上
+
+※ ブレークポイントは `settings/custom-media.css` で変更できます（上記はテンプレートのデフォルト値）。
 
 例: `block@md`, `flex@lg`, `mt:lg@xl`
 
@@ -258,7 +271,7 @@ FlonCSS コアには以下のユーティリティクラスが含まれていま
     "watch:css": "postcss src/main.css -o dist/main.css --watch"
   },
   "dependencies": {
-    "floncss": "^1.0.0"
+    "floncss": "^2.1.0"
   },
   "devDependencies": {
     "postcss": "^8.5.3",
