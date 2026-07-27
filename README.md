@@ -69,16 +69,16 @@ npm install floncss
 
 ## クイックスタート
 
-### 1. PostCSS ツールチェーンをインストール
+### 1. PostCSS ツールチェーンについて
 
 テンプレートワークフロー（カスタマイズしてビルドする使い方）には PostCSS が必要です。
-v3 から peerDependencies は自動インストールされないため、明示的にインストールしてください:
+`npm install floncss` を実行すると、peerDependencies として以下が自動的にインストールされます:
 
 ```bash
-npm install -D postcss postcss-cli postcss-import postcss-mixins postcss-preset-env postcss-import-resolver cssnano
+postcss postcss-cli postcss-import postcss-mixins postcss-preset-env postcss-import-resolver cssnano
 ```
 
-※ プリビルド CSS（`<link>` で読み込む使い方）だけならこの手順は不要です。
+※ プリビルド CSS（`<link>` で読み込む使い方）だけで PostCSS が不要な場合は、`npm install floncss --omit=peer` でスキップできます。
 
 ### 2. テンプレートを初期化
 

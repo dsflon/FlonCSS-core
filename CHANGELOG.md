@@ -3,6 +3,15 @@
 FlonCSS の注目すべき変更をこのファイルに記録します。
 フォーマットは [Keep a Changelog](https://keepachangelog.com/ja/1.1.0/) に、バージョニングは [Semantic Versioning](https://semver.org/lang/ja/) に準拠します。
 
+## [3.1.0] - 2026-07-27
+
+### 変更（Changed）
+
+- **peerDependencies を再び自動インストール対象に**（`peerDependenciesMeta` の `optional: true` を撤回）
+  - v3.0.0 ではプリビルド CSS だけを使う利用者に PostCSS 一式を強制しないため、全 peerDependencies を optional 扱いにしていました
+  - 実際にはプリビルド CSS のみを使う利用者はごく少数で、大半はテンプレートワークフロー（PostCSS 一式が必須）を利用するため、`npm install floncss` だけで必要なツールチェーンが揃う体験を優先し直しました
+  - **移行方法**: 特に対応不要です。`npm install -D postcss postcss-cli postcss-import postcss-mixins postcss-preset-env postcss-import-resolver cssnano` を既に手動実行済みの環境には影響ありません。プリビルド CSS だけで PostCSS が不要な場合は `npm install floncss --omit=peer` 等でスキップできます
+
 ## [3.0.0] - 2026-07-04
 
 ### 破壊的変更（Breaking Changes）

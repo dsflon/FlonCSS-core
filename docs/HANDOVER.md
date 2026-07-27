@@ -72,7 +72,7 @@ FlonCSS-core/
 
 ### 5. その他
 
-- peerDependencies は全て `peerDependenciesMeta.optional: true`。プリビルドだけ使う人に PostCSS 一式を強制しないため
+- peerDependencies は v3.0.0 で全て `peerDependenciesMeta.optional: true` にしていたが、**v3.1.0 で撤回し自動インストールに戻した**。狙い（プリビルドだけ使う人に PostCSS 一式を強制しない）自体は妥当だったが、実際にはテンプレートワークフロー利用者が大半でプリビルド専用利用者はごく少数だったため、`npm install floncss` だけでツールチェーンが揃う体験を優先。プリビルド専用利用者は `npm install floncss --omit=peer` で回避可能
 - Google Fonts の `@import` はテンプレートでコメントアウト（レンダリングブロック・GDPR 配慮）。`--font-family-primary` は游ゴシック等のローカルフォントにフォールバックする
 - `.cols` は非推奨（コード上の `@deprecated` コメント + README 記載）。削除は次のメジャーで
 
